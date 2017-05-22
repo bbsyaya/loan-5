@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loan.datasource.mappers.BussinessMonitorMapper">
+  <resultMap id="BaseResultMap" type="com.loan.datasource.entities.BussinessMonitor">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="BIGINT" property="appId" />
+    <result column="visit_time" jdbcType="TIMESTAMP" property="visitTime" />
+    <result column="client_ip" jdbcType="INTEGER" property="clientIp" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="charge" jdbcType="REAL" property="charge" />
+    <result column="module_code" jdbcType="VARCHAR" property="moduleCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, app_id, visit_time, client_ip, user_id, charge, module_code
+  </sql>
+  <select id="selectByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bussiness_monitor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bussiness_monitor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample">
+    delete from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    insert into bussiness_monitor (id, app_id, visit_time, 
+      client_ip, user_id, charge, 
+      module_code)
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{visitTime,jdbcType=TIMESTAMP}, 
+      #{clientIp,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{charge,jdbcType=REAL}, 
+      #{moduleCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    insert into bussiness_monitor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="visitTime != null">
+        visit_time,
+      </if>
+      <if test="clientIp != null">
+        client_ip,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="charge != null">
+        charge,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="visitTime != null">
+        #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        #{charge,jdbcType=REAL},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample" resultType="java.lang.Integer">
+    select count(*) from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bussiness_monitor
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=BIGINT},
+      </if>
+      <if test="record.visitTime != null">
+        visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clientIp != null">
+        client_ip = #{record.clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.charge != null">
+        charge = #{record.charge,jdbcType=REAL},
+      </if>
+      <if test="record.moduleCode != null">
+        module_code = #{record.moduleCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bussiness_monitor
+    set id = #{record.id,jdbcType=BIGINT},
+      app_id = #{record.appId,jdbcType=BIGINT},
+      visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      client_ip = #{record.clientIp,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      charge = #{record.charge,jdbcType=REAL},
+      module_code = #{record.moduleCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    update bussiness_monitor
+    <set>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="visitTime != null">
+        visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientIp != null">
+        client_ip = #{clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        charge = #{charge,jdbcType=REAL},
+      </if>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    update bussiness_monitor
+    set app_id = #{appId,jdbcType=BIGINT},
+      visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      client_ip = #{clientIp,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      charge = #{charge,jdbcType=REAL},
+      module_code = #{moduleCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.loan.datasource.entities.BussinessMonitor">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="BIGINT" property="appId" />
+    <result column="visit_time" jdbcType="TIMESTAMP" property="visitTime" />
+    <result column="client_ip" jdbcType="INTEGER" property="clientIp" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="charge" jdbcType="REAL" property="charge" />
+    <result column="module_code" jdbcType="VARCHAR" property="moduleCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, app_id, visit_time, client_ip, user_id, charge, module_code
+  </sql>
+  <select id="selectByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bussiness_monitor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bussiness_monitor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample">
+    delete from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    insert into bussiness_monitor (id, app_id, visit_time, 
+      client_ip, user_id, charge, 
+      module_code)
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{visitTime,jdbcType=TIMESTAMP}, 
+      #{clientIp,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{charge,jdbcType=REAL}, 
+      #{moduleCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    insert into bussiness_monitor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="visitTime != null">
+        visit_time,
+      </if>
+      <if test="clientIp != null">
+        client_ip,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="charge != null">
+        charge,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="visitTime != null">
+        #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        #{charge,jdbcType=REAL},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample" resultType="java.lang.Integer">
+    select count(*) from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bussiness_monitor
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=BIGINT},
+      </if>
+      <if test="record.visitTime != null">
+        visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clientIp != null">
+        client_ip = #{record.clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.charge != null">
+        charge = #{record.charge,jdbcType=REAL},
+      </if>
+      <if test="record.moduleCode != null">
+        module_code = #{record.moduleCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bussiness_monitor
+    set id = #{record.id,jdbcType=BIGINT},
+      app_id = #{record.appId,jdbcType=BIGINT},
+      visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      client_ip = #{record.clientIp,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      charge = #{record.charge,jdbcType=REAL},
+      module_code = #{record.moduleCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    update bussiness_monitor
+    <set>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="visitTime != null">
+        visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientIp != null">
+        client_ip = #{clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        charge = #{charge,jdbcType=REAL},
+      </if>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    update bussiness_monitor
+    set app_id = #{appId,jdbcType=BIGINT},
+      visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      client_ip = #{clientIp,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      charge = #{charge,jdbcType=REAL},
+      module_code = #{moduleCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.loan.datasource.entities.BussinessMonitor">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="app_id" jdbcType="BIGINT" property="appId" />
+    <result column="visit_time" jdbcType="TIMESTAMP" property="visitTime" />
+    <result column="client_ip" jdbcType="INTEGER" property="clientIp" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="charge" jdbcType="REAL" property="charge" />
+    <result column="module_code" jdbcType="VARCHAR" property="moduleCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, app_id, visit_time, client_ip, user_id, charge, module_code
+  </sql>
+  <select id="selectByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bussiness_monitor
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from bussiness_monitor
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample">
+    delete from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    insert into bussiness_monitor (id, app_id, visit_time, 
+      client_ip, user_id, charge, 
+      module_code)
+    values (#{id,jdbcType=BIGINT}, #{appId,jdbcType=BIGINT}, #{visitTime,jdbcType=TIMESTAMP}, 
+      #{clientIp,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{charge,jdbcType=REAL}, 
+      #{moduleCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    insert into bussiness_monitor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="visitTime != null">
+        visit_time,
+      </if>
+      <if test="clientIp != null">
+        client_ip,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="charge != null">
+        charge,
+      </if>
+      <if test="moduleCode != null">
+        module_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="visitTime != null">
+        #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientIp != null">
+        #{clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        #{charge,jdbcType=REAL},
+      </if>
+      <if test="moduleCode != null">
+        #{moduleCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.loan.datasource.entities.BussinessMonitorExample" resultType="java.lang.Integer">
+    select count(*) from bussiness_monitor
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update bussiness_monitor
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.appId != null">
+        app_id = #{record.appId,jdbcType=BIGINT},
+      </if>
+      <if test="record.visitTime != null">
+        visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clientIp != null">
+        client_ip = #{record.clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.charge != null">
+        charge = #{record.charge,jdbcType=REAL},
+      </if>
+      <if test="record.moduleCode != null">
+        module_code = #{record.moduleCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update bussiness_monitor
+    set id = #{record.id,jdbcType=BIGINT},
+      app_id = #{record.appId,jdbcType=BIGINT},
+      visit_time = #{record.visitTime,jdbcType=TIMESTAMP},
+      client_ip = #{record.clientIp,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      charge = #{record.charge,jdbcType=REAL},
+      module_code = #{record.moduleCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    update bussiness_monitor
+    <set>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=BIGINT},
+      </if>
+      <if test="visitTime != null">
+        visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clientIp != null">
+        client_ip = #{clientIp,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="charge != null">
+        charge = #{charge,jdbcType=REAL},
+      </if>
+      <if test="moduleCode != null">
+        module_code = #{moduleCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loan.datasource.entities.BussinessMonitor">
+    update bussiness_monitor
+    set app_id = #{appId,jdbcType=BIGINT},
+      visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      client_ip = #{clientIp,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      charge = #{charge,jdbcType=REAL},
+      module_code = #{moduleCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
