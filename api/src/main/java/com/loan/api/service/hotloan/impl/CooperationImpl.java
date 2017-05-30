@@ -21,7 +21,7 @@ public class CooperationImpl implements ICooperation {
     private CooperationDao cooperationDao;
 
     public List<CooperationBean> getCooperationBeanByType(String type, int skip, int page){
-        List<CooperationBean> beanList = new ArrayList<>();
+        List<CooperationBean> beanList = new ArrayList<CooperationBean>();
         List<Cooperation> cooperationList = cooperationDao.findCooperationList(type, skip, page);
         for(Cooperation entity : cooperationList){
             CooperationBean bean = new CooperationBean();

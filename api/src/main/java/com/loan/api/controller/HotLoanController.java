@@ -4,6 +4,7 @@ import com.loan.api.service.hotloan.ICooperation;
 import com.loan.common.beans.CooperationBean;
 import com.loan.common.beans.Result;
 import com.loan.common.params.LoanParam;
+import com.loan.common.utils.ExceptionUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,13 @@ public class HotLoanController extends BaseController  {
     @RequestMapping(value = "/getHotLoan", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
     public Result<List<CooperationBean>> getHotLoan(@ModelAttribute LoanParam loanParam,
                                                     HttpServletRequest request, HttpServletResponse response){
-        Result<List<CooperationBean>> result = new Result<>();
+        Result<List<CooperationBean>> result = new Result<List<CooperationBean>>();
         try {
                 List<CooperationBean> beanList = cooperation.getCooperationBeanByType(loanParam.getType(), loanParam.getLimit(), loanParam.getPage());
             return successResult(beanList);
         }catch (Exception e){
-            //return failResult(e);
-            throw e;
+            ExceptionUtils.printException("getHotLoan controller报错：", e);
         }
+        return null;
     }
 }

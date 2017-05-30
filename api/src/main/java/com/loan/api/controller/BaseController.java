@@ -12,7 +12,7 @@ public class BaseController {
 
     @ApiIgnore
     public <T> Result<List<T>> successResult(List<T> t){
-        Result<List<T>> result = new Result<>();
+        Result<List<T>> result = new Result<List<T>>();
         result.setCode(1);
         result.setMessage("请求成功!");
         result.setObj(t);
@@ -21,7 +21,7 @@ public class BaseController {
 
     @ApiIgnore
     public <T> Result<T> successResult(T t){
-        Result<T> result = new Result<>();
+        Result<T> result = new Result<T>();
         result.setCode(1);
         result.setMessage("请求成功!");
         result.setObj(t);
@@ -30,7 +30,7 @@ public class BaseController {
 
     @ApiIgnore
     public Result failResult(){
-        Result result = new Result<>();
+        Result result = new Result();
         result.setCode(0);
         result.setMessage("请求失败!");
         return result;
@@ -38,7 +38,7 @@ public class BaseController {
 
     @ApiIgnore
     public Result failResult(Exception e){
-        Result<StringBuilder> result = new Result<>();
+        Result<StringBuilder> result = new Result<StringBuilder>();
         result.setCode(0);
         result.setMessage("请求失败!");
         StackTraceElement[] trace = e.getStackTrace();
@@ -52,7 +52,7 @@ public class BaseController {
 
     @ApiIgnore
     public <T> Result<T> failResult(T t){
-        Result<T> result = new Result<>();
+        Result<T> result = new Result<T>();
         result.setCode(0);
         result.setMessage("请求失败!");
         result.setObj(t);
