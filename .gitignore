@@ -3,4 +3,6 @@
 /.idea/
 .idea
 .settings
-/.settings/
+/.settings/datasource/target/
+common/target/
+datasource/target/

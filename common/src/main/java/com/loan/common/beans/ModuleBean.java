@@ -1,8 +1,8 @@
-package com.loan.datasource.entities;
+package com.loan.common.beans;
 
 import java.util.Date;
 
-public class Module {
+public class ModuleBean {
     private Integer id;
 
     private String name;

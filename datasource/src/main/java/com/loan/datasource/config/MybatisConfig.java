@@ -20,7 +20,7 @@ import java.util.Properties;
  * 2）创建SqlSessionFactory
  */
 @Configuration    //该注解类似于spring配置文件
-@MapperScan(basePackages = "com.loan.datasource.dao")
+@MapperScan("com.loan.datasource.mappers")
 public class MybatisConfig {
 
     @Autowired
