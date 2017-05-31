@@ -22,6 +22,8 @@ public interface NewsMapper {
 
     List<News> selectByExample(NewsExample example);
 
+    News selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") News record, @Param("example") NewsExample example);
 
     int updateByExample(@Param("record") News record, @Param("example") NewsExample example);
@@ -29,6 +31,7 @@ public interface NewsMapper {
     int updateByPrimaryKeySelective(News record);
 
     int updateByPrimaryKey(News record);
+
 
     /**
      * 分页查询

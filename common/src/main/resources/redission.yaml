@@ -1,0 +1,11 @@
+clusterServersConfig:
+  nodeAddresses:
+  - "//127.0.0.1:6379"
+  scanInterval: 1000
+threads: 0
+
+executorServiceThreads: 0
+executorServiceWorkers:
+  myService1: 123
+  myService2: 421
+redissonNodeInitializer: !<org.mycompany.MyRedissonNodeInitializer> {}

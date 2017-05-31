@@ -2,7 +2,10 @@ package com.loan.datasource.mappers;
 
 import com.loan.datasource.entities.Cooperation;
 import com.loan.datasource.entities.CooperationExample;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -29,17 +32,6 @@ public interface CooperationMapper {
 
     int updateByPrimaryKey(Cooperation record);
 
-    /**
-     * 插入后获取自增长的id
-     * @param moduleId
-     * @param start
-     * @param end
-     * @return
-     */
-//    @Insert("INSERT INTO api(component, clientApi, scribeDescribe, clientApiVersion, invokeTimeout, authType, sessionRequire, openType) VALUES(#{api.component}, #{api.clientApi}, #{api.scribeDescribe}, #{api.clientApiVersion}, #{api.invokeTimeout}, #{api.authType}, #{api.sessionRequire}, #{api.openType})")
-//    @Options(useGeneratedKeys = true, keyProperty = "api.apiId") //此出设置将自增长的id赋值对象
-//    void add(@Param("api") Api api);
-
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "appName", column = "app_name"),
@@ -55,6 +47,6 @@ public interface CooperationMapper {
             @Result(property = "enabled", column = "enabled")
     })
     @Select("select c.*, t.`module_id` from cooperation c inner join cooperation_type t on c.id = t.cooperation_id where t.module_id=#{moduleId} and enabled=1 limit #{start},#{end}")
-    //@ResultType(Cooperation.class)
+        //@ResultType(Cooperation.class)
     List<Cooperation> selectByTypeAndPage(@Param("moduleId") String moduleId, @Param("start") int start, @Param("end") int end);
 }

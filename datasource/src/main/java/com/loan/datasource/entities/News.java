@@ -3,9 +3,13 @@ package com.loan.datasource.entities;
 import java.util.Date;
 
 public class News {
-    private long id;
+    private Integer id;
 
-    private int msgType;
+    private Byte msgType;
+
+    private String title;
+
+    private String tag;
 
     private String content;
 
@@ -13,16 +17,28 @@ public class News {
 
     private String createBy;
 
-    private String tag;
+    public Integer getId() {
+        return id;
+    }
 
-    private String title;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Byte getMsgType() {
+        return msgType;
+    }
+
+    public void setMsgType(Byte msgType) {
+        this.msgType = msgType;
+    }
 
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = title == null ? null : title.trim();
     }
 
     public String getTag() {
@@ -30,23 +46,7 @@ public class News {
     }
 
     public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getMsgType() {
-        return msgType;
-    }
-
-    public void setMsgType(int msgType) {
-        this.msgType = msgType;
+        this.tag = tag == null ? null : tag.trim();
     }
 
     public String getContent() {

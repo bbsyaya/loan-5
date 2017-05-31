@@ -48,4 +48,5 @@ public interface ModuleMapper {
     })
     @Select("select * from `module` where `enabled`= #{enabled} and `index`=#{index}")
     List<Module> getModuleIndex(@Param("enabled") int enabled,@Param("index") int index);
+
 }

@@ -1,7 +1,6 @@
 package com.loan.datasource;
 
 import com.loan.datasource.dao.UserDao;
-import com.loan.datasource.entities.Users;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +21,12 @@ public class DatasourceTest {
 
     @Test
     public void checkUser() {
-        Users user = new Users();
-        user.setIdCard("123");
-        user.setEmail("abd@12.com");
-        user.setLoginName("aa");
-        user.setLoginPwd("aa");
-        user.setUserName("test");
-        dao.insertUser(user);
+//        Users user = new Users();
+//        user.setIdCard("123");
+//        user.setEmail("abd@12.com");
+//        user.setLoginName("aa");
+//        user.setLoginPwd("aa");
+//        user.setUserName("test");
+//        dao.insertUser(user);
     }
 }

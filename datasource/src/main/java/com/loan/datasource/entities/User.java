@@ -2,7 +2,7 @@ package com.loan.datasource.entities;
 
 import java.util.Date;
 
-public class Users {
+public class User {
     private Long id;
 
     private String loginName;
@@ -32,6 +32,16 @@ public class Users {
     private Date lastLoginTime;
 
     private Date updateTime;
+
+    private int enabled;
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
 
     public Long getId() {
         return id;

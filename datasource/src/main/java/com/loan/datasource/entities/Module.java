@@ -19,24 +19,6 @@ public class Module {
 
     private String logo;
 
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public Byte getIndex() {
-        return index;
-    }
-
-    public void setIndex(Byte index) {
-        this.index = index;
-    }
-
-
     public Integer getId() {
         return id;
     }
@@ -83,5 +65,21 @@ public class Module {
 
     public void setEnabled(Byte enabled) {
         this.enabled = enabled;
+    }
+
+    public Byte getIndex() {
+        return index;
+    }
+
+    public void setIndex(Byte index) {
+        this.index = index;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo == null ? null : logo.trim();
     }
 }

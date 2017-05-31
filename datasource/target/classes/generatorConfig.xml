@@ -58,7 +58,7 @@
         <table tableName="relation" domainObjectName="Relations" enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
-        <table tableName="user" domainObjectName="Users" enableCountByExample="true"
+        <table tableName="user" domainObjectName="User" enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
         <table tableName="zhima" domainObjectName="Zhima" enableCountByExample="true"
