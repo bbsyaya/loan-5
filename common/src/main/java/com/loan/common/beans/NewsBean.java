@@ -1,8 +1,8 @@
-package com.loan.datasource.entities;
+package com.loan.common.beans;
 
 import java.util.Date;
 
-public class News {
+public class NewsBean {
     private long id;
 
     private int msgType;

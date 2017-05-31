@@ -12,7 +12,7 @@ public class CopyBeanUtils<E> {
 
     public <T> List<E> copyBeanUtils(Class<E> target, List<T> sourceList)
             throws IllegalAccessException, InstantiationException {
-        List<E> beanList = new ArrayList<E>();
+        List<E> beanList = new ArrayList<>();
         for(int i=0; i<sourceList.size(); i++){
             E bean = target.newInstance();
             BeanUtils.copyProperties(sourceList.get(i), bean);

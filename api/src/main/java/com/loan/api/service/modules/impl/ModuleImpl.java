@@ -28,7 +28,6 @@ public class ModuleImpl implements IModules {
             ExceptionUtils.printException("getIndexModule出错：", e);
         } catch (InstantiationException e) {
             ExceptionUtils.printException("getIndexModule出错：", e);
-            e.printStackTrace();
         }
         return null;
     }
