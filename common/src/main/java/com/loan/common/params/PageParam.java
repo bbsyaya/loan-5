@@ -6,8 +6,8 @@ package com.loan.common.params;
  */
 public class PageParam {
 
-    public int limit = 0;
-    public int page = 10;
+    private int limit = 0;
+    private int page = 10;
 
     public int getLimit() {
         return limit;

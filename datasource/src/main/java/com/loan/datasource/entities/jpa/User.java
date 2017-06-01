@@ -1,14 +1,25 @@
-package com.loan.datasource.entities;
+package com.loan.datasource.entities.jpa;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+@Entity
+@Table(name="user")
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "login_name")
     private String loginName;
 
     private String password;
 
+    @Column(name = "reg_time")
     private Date regTime;
 
     private String petName;
@@ -17,6 +28,7 @@ public class User {
 
     private String email;
 
+    @Column(name = "last_login_time")
     private Date lastLoginTime;
 
     private Byte enabled;

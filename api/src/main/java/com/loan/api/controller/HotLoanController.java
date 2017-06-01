@@ -34,11 +34,11 @@ public class HotLoanController extends BaseController  {
                                                     HttpServletRequest request, HttpServletResponse response){
         Result<List<CooperationBean>> result = new Result<List<CooperationBean>>();
         try {
-                List<CooperationBean> beanList = cooperation.getCooperationBeanByType(loanParam.getType(), loanParam.getLimit(), loanParam.getPage());
+            List<CooperationBean> beanList = cooperation.getCooperationBeanByType(loanParam.getType(), loanParam.getLimit(), loanParam.getPage());
             return successResult(beanList);
         }catch (Exception e){
             ExceptionUtils.printException("getHotLoan controller报错：", e);
+            return failResult(e);
         }
-        return null;
     }
 }

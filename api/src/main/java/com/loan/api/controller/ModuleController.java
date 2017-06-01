@@ -2,6 +2,8 @@ package com.loan.api.controller;
 
 import com.loan.api.service.modules.IModules;
 import com.loan.common.beans.ModuleBean;
+import com.loan.common.beans.Result;
+import com.loan.common.utils.ExceptionUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -30,7 +32,14 @@ public class ModuleController extends BaseController{
      */
     @ApiOperation(value = "获取首页显示的模块", notes = "获取首页显示的模块", response = ModuleBean.class)
     @RequestMapping(value = "/getIndexModule", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
-    public List<ModuleBean> getIndexModule(){
-        return modules.getIndexModule();
+    public Result<List<ModuleBean>> getIndexModule(){
+        try {
+            List<ModuleBean> beanList = modules.getIndexModule();
+            return successResult(beanList);
+        }catch (Exception e){
+            ExceptionUtils.printException("getIndexModule controller报错：", e);
+            return failResult(e);
+
+        }
     }
 }

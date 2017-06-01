@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface UserMapper {
-
     int deleteByPrimaryKey(Long id);
 
     int insert(User record);
@@ -19,6 +18,7 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
 
+
     /**
      * 获取用户列表
      * @return
@@ -30,15 +30,39 @@ public interface UserMapper {
     @Results({
             @Result(property = "id", column = "id"),
             @Result(property = "loginName", column = "login_name"),
-            @Result(property = "userName", column = "user_name"),
-            @Result(property = "idCard", column = "id_card"),
-            @Result(property = "mobile", column = "mobile"),
             @Result(property = "regTime", column = "reg_time"),
-            @Result(property = "lastLoginTime", column = "last_login_time"),
-            @Result(property = "updateTime", column = "update_time")
+            @Result(property = "petName", column = "pet_name"),
+            @Result(property = "mobile", column = "mobile"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "lastLoginTime", column = "last_login_time")
     })
-    @Select("select * from user order by reg_time desc limit #{limit}, #{page}")
+    @Select("select id,login_name,reg_time,pet_name,mobile,email,last_login_time from user order by reg_time desc limit #{limit}, #{page}")
     List<User> getUserListByPage(@Param("limit") long limit, @Param("page") int page);
+
+    /**
+     * 获取用户列表
+     * @return
+     */
+    /**
+     * 根据id获取具体内容
+     * @return
+     */
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "loginName", column = "login_name"),
+            @Result(property = "regTime", column = "reg_time"),
+            @Result(property = "petName", column = "pet_name"),
+            @Result(property = "mobile", column = "mobile"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "lastLoginTime", column = "last_login_time")
+    })
+    @Select("<script>select id,login_name,reg_time,pet_name,mobile,email,last_login_time from user " +
+            "where 1=1 <when test='mobile!=null'>" +
+            " AND mobile = #{mobile} </when>" +
+            " <when test='login_name!=null'>" +
+            " AND login_name = #{user.loginName} </when>" +
+            "order by reg_time desc limit #{limit}, #{page}</script>")
+    List<User> getUserListByPageAndCondition(@Param("user") User user, @Param("limit") long limit, @Param("page") int page);
 
     /**
      * 根据Id获取用户信息
@@ -65,7 +89,7 @@ public interface UserMapper {
             @Result(property = "lastLoginTime", column = "last_login_time"),
             @Result(property = "updateTime", column = "update_time")
     })
-    @Select("select * from user where id= #{id} and enabled = 1")
+    @Select("select * from user where id= #{id} and enabled")
     User getUserById(@Param("id") long id);
 
     /**
@@ -79,7 +103,7 @@ public interface UserMapper {
      * @return
      */
     @ResultType(Integer.class)
-    @Select("select count(*) from user where login_name = #{loginName} and login_pwd = #{pwd} and enabled = 1")
+    @Select("select count(*) from user where login_name = #{loginName} and password = #{pwd}")
     Integer login(@Param("loginName") String loginName, @Param("pwd") String pwd);
 
     /**
@@ -88,7 +112,8 @@ public interface UserMapper {
      * @return
      * @throws Exception
      */
-    @Insert("insert into user value (null,user.loginName,user.loginPwd,user.userName, user.idCard, user.mobile, user.qq, user.wechart, user.email, user.phone, user.education, user.job, user.regTime, user.lastLoginTime, user.updateTime)")
+    @Insert("insert into user values (null,#{user.loginName},#{user.password},#{user.regTime},#{user.petName},#{user.mobile},#{user.email},#{user.lastLoginTime}, 1)")
     @Options(useGeneratedKeys=true,keyProperty="user.id")
-    long insertUser(@Param("user")User user) throws Exception;
+    int insertUser(@Param("user") User user) throws Exception;
+
 }

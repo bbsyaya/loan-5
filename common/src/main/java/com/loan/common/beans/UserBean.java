@@ -1,8 +1,8 @@
-package com.loan.datasource.entities;
+package com.loan.common.beans;
 
 import java.util.Date;
 
-public class User {
+public class UserBean {
     private Long id;
 
     private String loginName;
