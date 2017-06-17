@@ -1,6 +1,8 @@
 package com.loan.common.beans;
 
-import java.util.Date;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
+import java.sql.Timestamp;
 
 public class CooperationBean {
     private Long id;
@@ -19,9 +21,15 @@ public class CooperationBean {
 
     private String outTime;
 
-    private Date createTime;
+    private String createTimeString;
 
-    private Date updateTime;
+    private String updateTimeString;
+
+    @Ignore
+    private Timestamp createTime;
+
+    @Ignore
+    private Timestamp updateTime;
 
     private Integer orderNo;
 
@@ -91,19 +99,19 @@ public class CooperationBean {
         this.outTime = outTime == null ? null : outTime.trim();
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -121,5 +129,21 @@ public class CooperationBean {
 
     public void setEnabled(Byte enabled) {
         this.enabled = enabled;
+    }
+
+    public String getCreateTimeString() {
+        return createTimeString;
+    }
+
+    public void setCreateTimeString(String createTimeString) {
+        this.createTimeString = createTimeString;
+    }
+
+    public String getUpdateTimeString() {
+        return updateTimeString;
+    }
+
+    public void setUpdateTimeString(String updateTimeString) {
+        this.updateTimeString = updateTimeString;
     }
 }

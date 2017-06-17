@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value= TypeMismatchException.class)
-    //    @ExceptionHandler(value={RuntimeException.class,MyRuntimeException.class})
+    //    @ExceptionHandler(value={.class,MyRuntimeException.class})
     //    @ExceptionHandler//处理所有异常
     public Result<String> exceptionErrorParamHandler(HttpServletRequest request,
                                                      TypeMismatchException exception) {

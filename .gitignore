@@ -7,3 +7,13 @@
 common/target/
 datasource/target/
 api/target/
+admin/target/
+api/.DS_Store
+datasource/src/main/java/.DS_Store
+datasource/src/main/java/com/.DS_Store
+datasource/src/main/java/com/loan/.DS_Store
+datasource/src/main/java/com/loan/datasource/.DS_Store
+npm-debug.log
+.DS_Store
+admin/admin.iml
+datasource/src/main/.DS_Store

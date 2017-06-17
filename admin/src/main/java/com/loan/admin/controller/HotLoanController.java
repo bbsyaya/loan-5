@@ -1,0 +1,106 @@
+package com.loan.admin.controller;
+
+import com.loan.admin.consts.Constants;
+import com.loan.admin.service.hotloan.ICooperation;
+import com.loan.common.beans.CooperationBean;
+import com.loan.common.beans.Result;
+import com.loan.common.params.LoanParam;
+import com.loan.common.utils.ExceptionUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
+/**
+ * Created by shuttle on 5/25/17.
+ */
+@RestController
+@RequestMapping(Constants.BASE_URL + "/loan")
+@Api(description = "合作商相关")
+public class HotLoanController extends BaseController  {
+
+    @Autowired
+    private ICooperation cooperation;
+
+    @ApiOperation(value = "获取贷款列表", notes = "获取贷款列表", response = Boolean.class)
+    @RequestMapping(value = "/getLoanList", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
+    public Result<List<CooperationBean>> getHotLoanList(@ModelAttribute LoanParam loanParam,
+                                                    HttpServletRequest request, HttpServletResponse response){
+        Result<List<CooperationBean>> result = new Result<List<CooperationBean>>();
+        try {
+            List<CooperationBean> beanList = cooperation.getCooperationBeanByPage(loanParam.getLimit(), loanParam.getPage());
+            return successResult(beanList);
+        }catch (Exception e){
+            ExceptionUtils.printException("getLoanList controller报错：", e);
+            return failResult(e);
+        }
+    }
+
+    @ApiOperation(value = "根据类型获取贷款列表", notes = "根据类型获取贷款列表", response = Boolean.class)
+    @RequestMapping(value = "/getLoanWithType", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
+    public Result<List<CooperationBean>> getHotLoanListWithNoType(@ModelAttribute LoanParam loanParam,
+                                                        HttpServletRequest request, HttpServletResponse response){
+        Result<List<CooperationBean>> result = new Result<List<CooperationBean>>();
+        try {
+            List<CooperationBean> beanList = cooperation.getCooperationBeanByType(loanParam.getType(), loanParam.getLimit(), loanParam.getPage());
+            return successResult(beanList);
+        }catch (Exception e){
+            ExceptionUtils.printException("getLoanWithType controller报错：", e);
+            return failResult(e);
+        }
+    }
+
+    @ApiOperation(value = "更新贷款信息", notes = "更新贷款信息", response = Boolean.class)
+    @RequestMapping(value = "/updateHotLoan", method = { RequestMethod.PUT }, produces = "application/json;charset=utf-8")
+    public Result<CooperationBean> updateHotLoan(@ModelAttribute CooperationBean bean,
+                                                    HttpServletRequest request, HttpServletResponse response){
+        try {
+            cooperation.updateCooperation(bean);
+            return successResult(bean);
+        }catch (Exception e){
+            ExceptionUtils.printException("getHotLoan controller报错：", e);
+            return failResult(e);
+        }
+    }
+
+    @ApiOperation(value = "获取某个商户信息", notes = "获取某个商户信息", response = Boolean.class)
+    @RequestMapping(value = "/findHotLoanById/{id}", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
+    public Result<CooperationBean> findHotLoanById(@PathVariable("id") long id){
+        try {
+            CooperationBean bean = cooperation.findById(id);
+            return successResult(bean);
+        }catch (Exception e){
+            ExceptionUtils.printException("findHotLoanById controller报错：", e);
+            return failResult(e);
+        }
+    }
+
+    @ApiOperation(value = "插入贷款信息", notes = "插入贷款信息", response = Boolean.class)
+    @RequestMapping(value = "/insertHotLoan", method = { RequestMethod.PUT}, produces = "application/json;charset=utf-8")
+    public Result<Integer> insertHotLoan(@ModelAttribute CooperationBean bean,
+                                                    HttpServletRequest request, HttpServletResponse response){
+        try {
+            int i = cooperation.insertCooperation(bean);
+            return successResult(i);
+        }catch (Exception e){
+            ExceptionUtils.printException("insertHotLoan controller报错：", e);
+            return failResult(e);
+        }
+    }
+
+    @ApiOperation(value = "获取合作商的总数", notes = "获取合作商的总数", response = Boolean.class)
+    @RequestMapping(value = "/cooperationCount", method = { RequestMethod.PUT}, produces = "application/json;charset=utf-8")
+    public Result<Integer> cooperationCount(){
+        try {
+            int i = cooperation.getCooperatorCount();
+            return successResult(i);
+        }catch (Exception e){
+            ExceptionUtils.printException("cooperationCount controller报错：", e);
+            return failResult(e);
+        }
+    }
+}

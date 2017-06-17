@@ -57,9 +57,9 @@ public interface UserMapper {
             @Result(property = "lastLoginTime", column = "last_login_time")
     })
     @Select("<script>select id,login_name,reg_time,pet_name,mobile,email,last_login_time from user " +
-            "where 1=1 <when test='mobile!=null'>" +
-            " AND mobile = #{mobile} </when>" +
-            " <when test='login_name!=null'>" +
+            "where 1=1 <when test='user.mobile!=null'>" +
+            " AND mobile = #{user.mobile} </when>" +
+            " <when test='user.loginName!=null'>" +
             " AND login_name = #{user.loginName} </when>" +
             "order by reg_time desc limit #{limit}, #{page}</script>")
     List<User> getUserListByPageAndCondition(@Param("user") User user, @Param("limit") long limit, @Param("page") int page);

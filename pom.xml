@@ -15,7 +15,8 @@
 		<module>datasource</module>
 		<module>api</module>
 		<module>common</module>
-	</modules>
+        <module>admin</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -57,11 +58,6 @@
 				<groupId>com.squareup.okio</groupId>
 				<artifactId>okio</artifactId>
 				<version>1.6.0</version>
-			</dependency>
-			<dependency>
-				<groupId>com.common.hession</groupId>
-				<artifactId>hession-4.0.33</artifactId>
-				<version>1.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>io.springfox</groupId>

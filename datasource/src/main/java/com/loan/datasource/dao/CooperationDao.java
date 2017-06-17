@@ -15,11 +15,28 @@ public class CooperationDao {
     @Autowired
     CooperationMapper cooperationMapper;
 
-    public int insertCooperation(Cooperation cooperation){
+    public int insertCooperation(Cooperation cooperation) throws Exception {
         return cooperationMapper.insert(cooperation);
+    }
+
+    public void updateCooperation(Cooperation cooperation){
+        cooperationMapper.update(cooperation);
     }
 
     public List<Cooperation> findCooperationList(String type, int skip, int page){
         return cooperationMapper.selectByTypeAndPage(type, skip, page);
     }
+
+    public List<Cooperation> findCooperationListByPage(int skip, int page){
+        return cooperationMapper.selectByPage(skip, page);
+    }
+
+    public Cooperation findById(long id){
+        return cooperationMapper.findById(id);
+    }
+
+    public int getCooperatorCount(){
+       return cooperationMapper.cooperationCount();
+    }
+
 }

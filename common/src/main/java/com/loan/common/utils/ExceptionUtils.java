@@ -14,11 +14,11 @@ public class ExceptionUtils {
         StackTraceElement[] stackTrace = e.getStackTrace();
         if (stackTrace != null) {
             for (StackTraceElement element : stackTrace) {
-                LOGGER.error(pre + ":" + element.getClassName());
-                LOGGER.error(pre + ":" + element.getClassName());
-                LOGGER.error(pre + ":" + element.getFileName());
-                LOGGER.error(pre + ":" + element.getMethodName());
-                LOGGER.error(pre + ":" + element.getLineNumber() + "");
+                LOGGER.error(pre + ":" + element.getClassName()
+                        + "   " + element.getClassName()
+                        + "   " + element.getFileName()
+                        + "   " + element.getMethodName()
+                        + "   " + element.getLineNumber() + "");
             }
         }
     }

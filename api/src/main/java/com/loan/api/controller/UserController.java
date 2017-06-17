@@ -4,6 +4,7 @@ import com.loan.api.service.user.IUser;
 import com.loan.common.beans.Result;
 import com.loan.common.beans.UserBean;
 import com.loan.common.params.PageParam;
+import com.loan.common.params.UserParam;
 import com.loan.common.utils.ExceptionUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +47,24 @@ public class UserController extends BaseController {
             return successResult(bean);
         }catch (Exception e){
             ExceptionUtils.printException("getUserById controller报错：", e);
+            e.printStackTrace();
+            return failResult(e);
+        }
+    }
+
+    @ApiOperation(value = "根据用户id获取用户信息", notes = "根据用户id获取用户信息", response = UserBean.class)
+    @RequestMapping(value = "/getUserByCondition", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
+    public Result<List<UserBean>> getUserByCondition(@ModelAttribute UserParam param, @ModelAttribute PageParam pageParam,
+                                        HttpServletRequest request, HttpServletResponse response){
+        try {
+            UserBean bean = new UserBean();
+            bean.setMobile(param.getMobile());
+            bean.setLoginName(param.getLoginName());
+            List<UserBean> beanList = user.getUserList(bean, pageParam.getLimit(), pageParam.getPage());
+            return successResult(beanList);
+        }catch (Exception e){
+            ExceptionUtils.printException("getUserById controller报错：", e);
+            e.printStackTrace();
             return failResult(e);
         }
     }

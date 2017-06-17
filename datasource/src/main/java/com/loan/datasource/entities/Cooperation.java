@@ -1,6 +1,6 @@
 package com.loan.datasource.entities;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Cooperation {
     private Long id;
@@ -19,9 +19,9 @@ public class Cooperation {
 
     private String outTime;
 
-    private Date createTime;
+    private Timestamp createTime;
 
-    private Date updateTime;
+    private Timestamp updateTime;
 
     private Integer orderNo;
 
@@ -91,19 +91,19 @@ public class Cooperation {
         this.outTime = outTime == null ? null : outTime.trim();
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 
