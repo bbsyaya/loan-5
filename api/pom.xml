@@ -52,10 +52,6 @@
             <artifactId>okio</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.common.hession</groupId>
-            <artifactId>hession-4.0.33</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
         </dependency>
