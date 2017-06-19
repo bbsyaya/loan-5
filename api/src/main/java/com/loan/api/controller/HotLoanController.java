@@ -28,7 +28,7 @@ public class HotLoanController extends BaseController  {
     @Autowired
     private ICooperation cooperation;
 
-    @ApiOperation(value = "获取热门贷款列表", notes = "获取热门贷款列表", response = Boolean.class)
+    @ApiOperation(value = "获取热门贷款列表", notes = "获取热门贷款列表，空 全部 1 极速放贷 2 帮你推荐 3 办信用卡 4 热门贷款", response = Boolean.class)
     @RequestMapping(value = "/getHotLoan", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
     public Result<List<CooperationBean>> getHotLoan(@ModelAttribute LoanParam loanParam,
                                                     HttpServletRequest request, HttpServletResponse response){
