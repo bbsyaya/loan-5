@@ -39,6 +39,13 @@ public class CooperationImpl implements ICooperation {
         for(Cooperation entity : cooperationList){
             CooperationBean bean = new CooperationBean();
             BeanUtils.copyProperties(entity, bean);
+            if(bean.getUpdateTime() != null) {
+                bean.setUpdateTimeString(DateUtils.formatTimeStampToString(bean.getUpdateTime()));
+            }
+
+            if(bean.getCreateTime() != null) {
+                bean.setCreateTimeString(DateUtils.formatTimeStampToString(bean.getCreateTime()));
+            }
             beanList.add(bean);
         }
         return beanList;
@@ -63,8 +70,12 @@ public class CooperationImpl implements ICooperation {
     public CooperationBean findById(long id) {
         CooperationBean bean = new CooperationBean();
         BeanUtils.copyProperties(cooperationDao.findById(id), bean);
-        bean.setCreateTimeString(DateUtils.formatDateToString(bean.getCreateTime()));
-        bean.setUpdateTimeString(DateUtils.formatDateToString(bean.getUpdateTime()));
+        if(bean.getUpdateTime() != null) {
+            bean.setUpdateTimeString(DateUtils.formatTimeStampToString(bean.getUpdateTime()));
+        }
+        if(bean.getCreateTime() != null) {
+            bean.setCreateTimeString(DateUtils.formatTimeStampToString(bean.getCreateTime()));
+        }
         return bean;
     }
 
