@@ -6,7 +6,8 @@ package com.loan.common.enums;
 public enum ResultEnums {
     DEFAULT("亲，您的wifi拐了好多弯...", 0),
     ERROR("亲，服务器繁忙，让我处理一会", 0),
-    SUCCESS("亲，您的请求成功啦！", 1);
+    SUCCESS("亲，您的请求成功啦！", 1),
+    NEED_LOGIN("请您登录！", -10);
 
     private final String message;
 
