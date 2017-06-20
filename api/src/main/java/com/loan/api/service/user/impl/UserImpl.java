@@ -44,10 +44,20 @@ public class UserImpl implements IUser {
     }
 
     @Override
+    public boolean login(String loginName, String pwd){
+        return userDao.login(loginName, pwd);
+    }
+
+    @Override
     public UserBean insertUser(UserBean bean) throws Exception {
-        User user = new User();
-        BeanUtils.copyProperties(bean, user);
-        BeanUtils.copyProperties(userDao.insertUser(user), bean);
+        User user = userDao.getUserByLoginName(bean.getLoginName());
+        if(user != null){
+            return null;
+        }else{
+            user = new User();
+            BeanUtils.copyProperties(bean, user);
+            BeanUtils.copyProperties(userDao.insertUser(user), bean);
+        }
         return bean;
     }
 }

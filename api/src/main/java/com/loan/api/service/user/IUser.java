@@ -15,4 +15,6 @@ public interface IUser {
     public UserBean getUserById(long id);
 
     public UserBean insertUser(UserBean user) throws Exception;
+
+    public boolean login(String loginName, String pwd);
 }

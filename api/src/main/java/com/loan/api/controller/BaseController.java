@@ -29,6 +29,15 @@ public class BaseController {
     }
 
     @ApiIgnore
+    public <T> Result<T> successResult(T t, String msg){
+        Result<T> result = new Result<T>();
+        result.setCode(1);
+        result.setMessage(msg);
+        result.setObj(t);
+        return result;
+    }
+
+    @ApiIgnore
     public Result failResult(){
         Result result = new Result();
         result.setCode(0);
@@ -55,6 +64,15 @@ public class BaseController {
         Result<T> result = new Result<T>();
         result.setCode(0);
         result.setMessage("请求失败!");
+        result.setObj(t);
+        return result;
+    }
+
+    @ApiIgnore
+    public <T> Result<T> failResult(T t, String msg){
+        Result<T> result = new Result<T>();
+        result.setCode(0);
+        result.setMessage(msg);
         result.setObj(t);
         return result;
     }

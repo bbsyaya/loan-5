@@ -19,7 +19,7 @@ public class User {
 
     private Date lastLoginTime;
 
-    private Byte enabled;
+    private int enabled;
 
     public Long getId() {
         return id;
@@ -85,11 +85,11 @@ public class User {
         this.lastLoginTime = lastLoginTime;
     }
 
-    public Byte getEnabled() {
+    public int getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(Byte enabled) {
+    public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
 }

@@ -93,6 +93,31 @@ public interface UserMapper {
     User getUserById(@Param("id") long id);
 
     /**
+     * 根据id获取具体内容
+     * @param loginName 登录名
+     * @return
+     */
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "loginName", column = "login_name"),
+            @Result(property = "userName", column = "user_name"),
+            @Result(property = "idCard", column = "id_card"),
+            @Result(property = "mobile", column = "mobile"),
+            @Result(property = "qq", column = "qq"),
+            @Result(property = "wechart", column = "wechart"),
+            @Result(property = "email", column = "email"),
+            @Result(property = "phone", column = "phone"),
+            @Result(property = "education", column = "education"),
+            @Result(property = "job", column = "job"),
+            @Result(property = "regTime", column = "reg_time"),
+            @Result(property = "lastLoginTime", column = "last_login_time"),
+            @Result(property = "updateTime", column = "update_time")
+    })
+    @Select("select * from user where login_name= #{loginName}")
+    User getUserByLoginName(@Param("loginName") String loginName);
+
+
+    /**
      * 根据Id获取用户信息
      * @return
      */

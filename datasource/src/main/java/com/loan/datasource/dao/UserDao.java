@@ -39,4 +39,8 @@ public class UserDao {
         }
         return null;
     }
+
+    public User getUserByLoginName(String loginName){
+        return userMapper.getUserByLoginName(loginName);
+    }
 }

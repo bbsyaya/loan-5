@@ -6,6 +6,8 @@ public class UserParam {
 
     private String loginName;
 
+    private String password;
+
     private Date regTime;
 
     private String petName;
@@ -16,6 +18,14 @@ public class UserParam {
 
     public String getLoginName() {
         return loginName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setLoginName(String loginName) {
