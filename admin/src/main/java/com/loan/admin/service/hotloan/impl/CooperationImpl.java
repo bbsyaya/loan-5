@@ -68,7 +68,12 @@ public class CooperationImpl implements ICooperation {
         return bean;
     }
 
-    public int getCooperatorCount(){
-        return cooperationDao.getCooperatorCount();
+    public int insertCooperationType(long cid, long mid) throws Exception{
+        return cooperationDao.insertCatagory(cid, mid);
+    }
+
+
+    public int getCooperatorCount(int type){
+        return cooperationDao.getCooperatorCount(type);
     }
 }

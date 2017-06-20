@@ -2,6 +2,7 @@ package com.loan.datasource.dao;
 
 import com.loan.datasource.entities.Cooperation;
 import com.loan.datasource.mappers.CooperationMapper;
+import com.loan.datasource.mappers.CooperationTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,9 @@ import java.util.List;
 public class CooperationDao {
     @Autowired
     CooperationMapper cooperationMapper;
+
+    @Autowired
+    CooperationTypeMapper cooperationTypeMapper;
 
     public int insertCooperation(Cooperation cooperation) throws Exception {
         return cooperationMapper.insert(cooperation);
@@ -31,12 +35,16 @@ public class CooperationDao {
         return cooperationMapper.selectByPage(skip, page);
     }
 
+    public int insertCatagory(long cid, long mid) throws Exception {
+        return cooperationTypeMapper.insert(cid, mid);
+    }
+
     public Cooperation findById(long id){
         return cooperationMapper.findById(id);
     }
 
-    public int getCooperatorCount(){
-       return cooperationMapper.cooperationCount();
+    public int getCooperatorCount(int type){
+       return cooperationMapper.cooperationCount(type);
     }
 
 }

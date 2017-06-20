@@ -59,7 +59,7 @@ public class AdminController extends BaseController {
 
     @ApiOperation(value = "插入admin", notes = "插入admin", response = UserBean.class)
     @RequestMapping(value = "/insertAdmin", method = { RequestMethod.PUT }, produces = "application/json;charset=utf-8")
-    public Result<Integer> insertAdmin(@ModelAttribute AdminParam param,
+    public Result<Long> insertAdmin(@ModelAttribute AdminParam param,
                                         HttpServletRequest request, HttpServletResponse response){
         try {
             AdminBean bean = new AdminBean();

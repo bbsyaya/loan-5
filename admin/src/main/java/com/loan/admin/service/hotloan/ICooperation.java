@@ -33,6 +33,15 @@ public interface ICooperation {
     public int insertCooperation(CooperationBean bean) throws Exception;
 
     /**
+     * 插入合作商的类型
+     * @param cid 合作商id
+     * @param mid 类型id
+     * @return
+     * @throws Exception
+     */
+    public int insertCooperationType(long cid, long mid) throws Exception;
+
+    /**
      * 根据id获取合作商户信息
      * @param id
      * @return
@@ -43,5 +52,5 @@ public interface ICooperation {
      * 获取合作商的数量
      * @return
      */
-    public int getCooperatorCount();
+    public int getCooperatorCount(int type);
 }

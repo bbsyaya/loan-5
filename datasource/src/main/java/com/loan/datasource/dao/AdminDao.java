@@ -19,8 +19,9 @@ public class AdminDao {
     @Autowired
     AdminMapper adminMapper;
 
-    public int insertAdmin(Admin admin) throws Exception {
-        return adminMapper.insertAdmin(admin);
+    public long insertAdmin(Admin admin) throws Exception {
+        adminMapper.insertAdmin(admin);
+        return admin.getId();
     }
 
     public void updateAdmin(Admin admin){

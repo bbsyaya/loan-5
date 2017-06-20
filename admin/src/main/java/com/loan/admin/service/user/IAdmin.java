@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IAdmin {
 
-    public int insertAdmin(AdminBean adminBean) throws Exception;
+    public long insertAdmin(AdminBean adminBean) throws Exception;
 
     public void updateAdmin(AdminBean admin);
 

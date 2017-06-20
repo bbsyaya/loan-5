@@ -22,7 +22,7 @@ public class AdminImpl implements IAdmin {
     AdminDao adminDao;
 
     @Override
-    public int insertAdmin(AdminBean adminBean) throws Exception {
+    public long insertAdmin(AdminBean adminBean) throws Exception {
         Admin admin = new Admin();
         BeanUtils.copyProperties(adminBean, admin);
         return adminDao.insertAdmin(admin);

@@ -106,6 +106,9 @@ public interface CooperationMapper {
      * @return
      * @throws Exception
      */
-    @Select("select count(*) from cooperation")
-    int cooperationCount();
+    @Select("<script>select count(*) from cooperation c inner join cooperation_type t on c.`id` = t.`cooperation_id`" +
+            " where 1=1 <when test='type!=0'>" +
+            " AND t.`module_id` = #{type} </when>" +
+            " order by create_time desc</script>")
+    int cooperationCount(@Param("type") int type);
 }
