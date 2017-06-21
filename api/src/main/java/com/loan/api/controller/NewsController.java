@@ -1,5 +1,6 @@
 package com.loan.api.controller;
 
+import com.loan.api.consts.Constants;
 import com.loan.api.service.News.INews;
 import com.loan.common.beans.NewsBean;
 import com.loan.common.beans.Result;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by shuttle on 5/31/17.
  */
 @RestController
-@RequestMapping("/news")
+@RequestMapping(Constants.BASE_URL + "/news")
 @Api(description = "新闻相关")
 public class NewsController extends BaseController {
 

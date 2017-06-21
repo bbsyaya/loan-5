@@ -1,5 +1,6 @@
 package com.loan.api.controller;
 
+import com.loan.api.consts.Constants;
 import com.loan.api.service.modules.IModules;
 import com.loan.common.beans.ModuleBean;
 import com.loan.common.beans.Result;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by shuttle on 5/30/17.
  */
 @RestController
-@RequestMapping("/module")
+@RequestMapping(Constants.BASE_URL + "/module")
 @Api(description = "模块相关")
 public class ModuleController extends BaseController{
     @Autowired

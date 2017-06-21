@@ -1,5 +1,6 @@
 package com.loan.api.controller;
 
+import com.loan.api.consts.Constants;
 import com.loan.api.service.user.IUser;
 import com.loan.common.beans.Result;
 import com.loan.common.beans.UserBean;
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by shuttle on 6/1/17.
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping(Constants.BASE_URL + "/user")
 @Api(description = "用户相关")
 public class UserController extends BaseController {
     @Autowired
