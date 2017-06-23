@@ -20,6 +20,8 @@ public interface IAdmin {
 
     public AdminBean getAdminById(Long id);
 
+    public AdminBean getAdminByName(String loginName);
+
     public int login(String loginName, String pwd);
 
     public int adminCount();

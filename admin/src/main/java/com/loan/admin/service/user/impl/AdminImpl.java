@@ -66,6 +66,15 @@ public class AdminImpl implements IAdmin {
     }
 
     @Override
+    public AdminBean getAdminByName(String loginName) {
+        AdminEntity entity = adminJpaDao.findByLoginName(loginName);
+        if(entity == null){
+            return null;
+        }
+        return copyProperties(entity);
+    }
+
+    @Override
     public int login(String loginName, String pwd) {
         return adminDao.login(loginName, pwd);
     }

@@ -9,4 +9,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 //@NoRepositoryBean
 public interface AdminDaoRepository extends PagingAndSortingRepository<AdminEntity, Long>, CrudRepository<AdminEntity, Long> {
+    public AdminEntity findByLoginName(String loginName);
 }

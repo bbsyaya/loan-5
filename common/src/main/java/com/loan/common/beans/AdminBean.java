@@ -19,7 +19,7 @@ public class AdminBean {
 
     private Timestamp createTime;
 
-    private int enabled;
+    private Byte enabled;
 
     public Timestamp getCreateTime() {
         return createTime;
@@ -77,11 +77,11 @@ public class AdminBean {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public int getEnabled() {
+    public Byte getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(int enabled) {
+    public void setEnabled(Byte enabled) {
         this.enabled = enabled;
     }
 }

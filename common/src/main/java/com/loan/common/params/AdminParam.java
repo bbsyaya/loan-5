@@ -3,6 +3,8 @@ package com.loan.common.params;
 
 public class AdminParam {
 
+    private Long id;
+
     private String loginName;
 
     private String loginPwd;
@@ -11,7 +13,23 @@ public class AdminParam {
 
     private String mobile;
 
-    private String createTime;
+    private Byte enabled;
+
+    public Byte getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Byte enabled) {
+        this.enabled = enabled;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getLoginName() {
         return loginName;
@@ -45,11 +63,4 @@ public class AdminParam {
         this.mobile = mobile == null ? null : mobile.trim();
     }
 
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
 }

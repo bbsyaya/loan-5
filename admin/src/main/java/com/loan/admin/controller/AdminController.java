@@ -8,11 +8,13 @@ import com.loan.common.beans.UserBean;
 import com.loan.common.params.AdminParam;
 import com.loan.common.params.LoginParam;
 import com.loan.common.params.PageParam;
+import com.loan.common.utils.DateUtils;
 import com.loan.common.utils.ExceptionUtils;
 import com.loan.common.utils.SelfBeanUtils;
 import com.loan.datasource.entities.Admin;
 import com.loan.datasource.entities.jpa.AdminEntity;
 import io.swagger.annotations.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -67,6 +69,9 @@ public class AdminController extends BaseController {
         try {
             AdminBean bean = new AdminBean();
             SelfBeanUtils.copyProperties(param, bean);
+            if(admin.getAdminByName(param.getLoginName()) != null){
+                return failResult(null, "该用户名已经存在！");
+            }
             return successResult(admin.insertAdmin(bean));
         }catch (Exception e){
             ExceptionUtils.printException("insertAdmin controller报错：", e);
@@ -77,9 +82,12 @@ public class AdminController extends BaseController {
 
     @ApiOperation(value = "更新admin", notes = "更新admin", response = UserBean.class)
     @RequestMapping(value = "/updateAdmin", method = { RequestMethod.PUT }, produces = "application/json;charset=utf-8")
-    public Result<AdminBean> updateAdmin(@ModelAttribute AdminBean bean,
+    public Result<AdminBean> updateAdmin(@ModelAttribute AdminParam param,
                                          HttpServletRequest request, HttpServletResponse response){
         try {
+            AdminBean bean = new AdminBean();
+            BeanUtils.copyProperties(param, bean, "createTime", "updateTime");
+            bean.setUpdateTime(DateUtils.getCurrentTimeStamp());
             admin.updateAdmin(bean);
             return successResult(bean);
         }catch (Exception e){
