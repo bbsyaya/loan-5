@@ -31,7 +31,7 @@ public class UserController extends BaseController {
     public Result<List<UserBean>> getUserByPage(@ModelAttribute PageParam pageParam,
                                                 HttpServletRequest request, HttpServletResponse response){
         try {
-            List<UserBean> beanList = user.getUserList(pageParam.getLimit(), pageParam.getPage());
+            List<UserBean> beanList = user.getUserList(pageParam.getPageNum(), pageParam.getPageSize());
             return successResult(beanList);
         }catch (Exception e){
             ExceptionUtils.printException("getUserByPage controller报错：", e);
@@ -61,7 +61,7 @@ public class UserController extends BaseController {
             UserBean bean = new UserBean();
             bean.setMobile(param.getMobile());
             bean.setLoginName(param.getLoginName());
-            List<UserBean> beanList = user.getUserList(bean, pageParam.getLimit(), pageParam.getPage());
+            List<UserBean> beanList = user.getUserList(bean, pageParam.getPageNum(), pageParam.getPageSize());
             return successResult(beanList);
         }catch (Exception e){
             ExceptionUtils.printException("getUserById controller报错：", e);

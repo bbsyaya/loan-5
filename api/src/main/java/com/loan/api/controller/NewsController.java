@@ -35,7 +35,7 @@ public class NewsController extends BaseController {
     public Result<List<NewsBean>> getIndexModule(@ModelAttribute PageParam pageParam,
                                                                 HttpServletRequest request, HttpServletResponse response){
         try {
-            List<NewsBean> beanList = news.getNewsByPage(pageParam.getLimit(), pageParam.getPage());
+            List<NewsBean> beanList = news.getNewsByPage(pageParam.getPageNum(), pageParam.getPageSize());
             return successResult(beanList);
         }catch (Exception e){
             ExceptionUtils.printException("getIndexModule controller报错：", e);
