@@ -19,6 +19,8 @@ public class Cooperation {
 
     private String outTime;
 
+    private String loanTime;
+
     private Timestamp createTime;
 
     private Timestamp updateTime;
@@ -26,6 +28,14 @@ public class Cooperation {
     private Integer orderNo;
 
     private Byte enabled;
+
+    public String getLoanTime() {
+        return loanTime;
+    }
+
+    public void setLoanTime(String loanTime) {
+        this.loanTime = loanTime;
+    }
 
     public Long getId() {
         return id;

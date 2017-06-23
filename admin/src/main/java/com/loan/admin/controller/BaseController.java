@@ -58,4 +58,13 @@ public class BaseController {
         result.setObj(t);
         return result;
     }
+
+    @ApiIgnore
+    public <T> Result<T> failResult(T t, String msg){
+        Result<T> result = new Result<T>();
+        result.setCode(0);
+        result.setMessage(msg);
+        result.setObj(t);
+        return result;
+    }
 }

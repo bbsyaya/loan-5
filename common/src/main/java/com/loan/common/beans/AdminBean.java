@@ -1,11 +1,10 @@
 package com.loan.common.beans;
 
 
-import com.loan.common.utils.DateUtils;
-
 import java.sql.Timestamp;
 
 public class AdminBean {
+
     private Long id;
 
     private String loginName;
@@ -16,9 +15,27 @@ public class AdminBean {
 
     private String mobile;
 
-    private String createTime;
+    public Timestamp updateTime;
+
+    private Timestamp createTime;
 
     private int enabled;
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
 
     public Long getId() {
         return id;
@@ -58,14 +75,6 @@ public class AdminBean {
 
     public void setMobile(String mobile) {
         this.mobile = mobile == null ? null : mobile.trim();
-    }
-
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = DateUtils.formatTimeStampToString(createTime);
     }
 
     public int getEnabled() {

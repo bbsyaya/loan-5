@@ -4,6 +4,7 @@ import com.loan.admin.service.hotloan.ICooperation;
 import com.loan.common.beans.CooperationBean;
 import com.loan.common.utils.DateUtils;
 import com.loan.datasource.dao.CooperationDao;
+import com.loan.datasource.dao.springdata.CooperationRepository;
 import com.loan.datasource.entities.Cooperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class CooperationImpl implements ICooperation {
 
     @Autowired
     private CooperationDao cooperationDao;
+
+    @Autowired
+    private CooperationRepository cDao;
+
 
     public List<CooperationBean> getCooperationBeanByType(String type, int skip, int page){
         List<CooperationBean> beanList = new ArrayList<CooperationBean>();

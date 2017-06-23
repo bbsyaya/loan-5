@@ -16,6 +16,7 @@ public interface CooperationMapper {
             @Result(property = "topQota", column = "top_qota"),
             @Result(property = "bottomQota", column = "bottom_qota"),
             @Result(property = "outTime", column = "out_time"),
+            @Result(property = "loanTime", column = "loan_time"),
             @Result(property = "createTime", column = "create_time"),
             @Result(property = "updateTime", column = "update_time"),
             @Result(property = "orderNo", column = "order_no"),
@@ -34,6 +35,7 @@ public interface CooperationMapper {
             @Result(property = "topQota", column = "top_qota"),
             @Result(property = "bottomQota", column = "bottom_qota"),
             @Result(property = "outTime", column = "out_time"),
+            @Result(property = "loanTime", column = "loan_time"),
             @Result(property = "createTime", column = "create_time"),
             @Result(property = "updateTime", column = "update_time"),
             @Result(property = "orderNo", column = "order_no"),
@@ -61,7 +63,7 @@ public interface CooperationMapper {
      *
      * @return
      */
-    @Select("update cooperation set app_name=#{cooperation.appName}, logo=#{cooperation.logo}, rate=#{cooperation.rate}, service_charge=#{cooperation.serviceCharge}, top_qota=#{cooperation.topQota}, bottom_qota=#{cooperation.bottomQota}, out_time=#{cooperation.outTime}, out_time=#{cooperation.updateTime}, order_no=#{cooperation.orderNo}, enabled=#{cooperation.enabled}  where id=#{cooperation.id}")
+    @Select("update cooperation set app_name=#{cooperation.appName}, logo=#{cooperation.logo}, rate=#{cooperation.rate}, service_charge=#{cooperation.serviceCharge}, top_qota=#{cooperation.topQota}, bottom_qota=#{cooperation.bottomQota}, out_time=#{cooperation.outTime}, loan_time=#{cooperation.loanTime} out_time=#{cooperation.updateTime}, order_no=#{cooperation.orderNo}, enabled=#{cooperation.enabled}  where id=#{cooperation.id}")
     public void update(@Param("cooperation") Cooperation cooperation);
 
     /**
@@ -71,7 +73,7 @@ public interface CooperationMapper {
      * @return
      * @throws Exception
      */
-    @Insert("insert into cooperation values (null, #{cooperation.appName},#{cooperation.logo},#{cooperation.rate},#{cooperation.serviceCharge},#{cooperation.topQota},#{cooperation.bottomQota},#{cooperation.outTime}, #{cooperation.createTime},#{cooperation.updateTime},#{cooperation.orderNo},1)")
+    @Insert("insert into cooperation values (null, #{cooperation.appName},#{cooperation.logo},#{cooperation.rate},#{cooperation.serviceCharge},#{cooperation.topQota},#{cooperation.bottomQota},#{cooperation.outTime}, #{cooperation.createTime}, #{cooperation.loanTime},#{cooperation.updateTime},#{cooperation.orderNo},1)")
     @Options(useGeneratedKeys = true, keyProperty = "cooperation.id")
     int insert(@Param("cooperation") Cooperation cooperation) throws Exception;
 
@@ -96,6 +98,7 @@ public interface CooperationMapper {
             @Result(property = "outTime", column = "out_time"),
             @Result(property = "createTime", column = "create_time"),
             @Result(property = "updateTime", column = "update_time"),
+            @Result(property = "loanTime", column = "loan_time"),
             @Result(property = "orderNo", column = "order_no"),
             @Result(property = "enabled", column = "enabled")
     })

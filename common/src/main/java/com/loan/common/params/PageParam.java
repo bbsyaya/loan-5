@@ -6,22 +6,22 @@ package com.loan.common.params;
  */
 public class PageParam {
 
-    private int limit = 0;
-    private int page = 10;
+    private int pageNum = 0;
+    private int pageSize = 10;
 
-    public int getLimit() {
-        return limit;
+    public int getPageNum() {
+        return pageNum;
     }
 
-    public void setLimit(int limit) {
-        this.limit = limit;
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
     }
 
-    public int getPage() {
-        return page;
+    public int getPageSize() {
+        return pageSize;
     }
 
-    public void setPage(int page) {
-        this.page = page;
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 }

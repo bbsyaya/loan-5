@@ -42,6 +42,7 @@ public interface AdminMapper {
             @Result(property = "loginPwd", column = "login_pwd"),
             @Result(property = "trueName", column = "true_name"),
             @Result(property = "mobile", column = "mobile"),
+            @Result(property = "updateTime", column = "update_time"),
             @Result(property = "createTime", column = "create_time"),
             @Result(property = "enabled", column = "enabled")
     })

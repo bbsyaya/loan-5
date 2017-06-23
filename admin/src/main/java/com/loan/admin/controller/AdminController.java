@@ -6,19 +6,19 @@ import com.loan.common.beans.AdminBean;
 import com.loan.common.beans.Result;
 import com.loan.common.beans.UserBean;
 import com.loan.common.params.AdminParam;
+import com.loan.common.params.LoginParam;
 import com.loan.common.params.PageParam;
 import com.loan.common.utils.ExceptionUtils;
 import com.loan.common.utils.SelfBeanUtils;
 import com.loan.datasource.entities.Admin;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import com.loan.datasource.entities.jpa.AdminEntity;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by shuttle on 6/1/17.
@@ -32,10 +32,13 @@ public class AdminController extends BaseController {
 
     @ApiOperation(value = "获取Admin列表", notes = "获取Admin列表", response = Admin.class)
     @RequestMapping(value = "/getAdminList", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
-    public Result<List<AdminBean>> getAdminList(@ModelAttribute AdminParam bean, @ModelAttribute PageParam pageParam,
+    public Result<Page<AdminEntity>> getAdminList(@ModelAttribute PageParam pageParam,
                                                  HttpServletRequest request, HttpServletResponse response){
         try {
-            List<AdminBean> beanList = admin.findAdminList(bean, pageParam.getLimit(), pageParam.getPage());
+            if(pageParam.getPageNum() < 1){
+                return failResult(null, "页码必须大于等于1.");
+            }
+            Page<AdminEntity> beanList = admin.getAdminListWithPaging(pageParam.getPageNum(), pageParam.getPageSize());
             return successResult(beanList);
         }catch (Exception e){
             ExceptionUtils.printException("getAdminList controller报错：", e);
@@ -86,11 +89,18 @@ public class AdminController extends BaseController {
         }
     }
 
-    @ApiOperation(value = "登录", notes = "登录", response = UserBean.class)
+        @ApiOperation(value = "登录", notes = "登录", response = Boolean.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "param", value = "用户名", required = true, dataType = "LoginParam"),
+    })
     @RequestMapping(value = "/login", method = { RequestMethod.POST }, produces = "application/json;charset=utf-8")
-    public Result<Boolean> login(@RequestBody Map<String, String> map){
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+    public Result<Boolean> login(@RequestBody LoginParam param){
         try {
-            boolean b = admin.login(map.get("loginName"), map.get("pwd")) == 1? true:false;
+            boolean b = admin.login(param.getLoginName(), param.getLoginPwd()) == 1? true:false;
             return successResult(b);
         }catch (Exception e){
             ExceptionUtils.printException("login controller报错：", e);
