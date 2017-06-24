@@ -64,9 +64,17 @@ public class AdminController extends BaseController {
 
     @ApiOperation(value = "插入admin", notes = "插入admin", response = UserBean.class)
     @RequestMapping(value = "/insertAdmin", method = { RequestMethod.PUT }, produces = "application/json;charset=utf-8")
-    public Result<Long> insertAdmin(@ModelAttribute AdminParam param,
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "param", value = "用户名", required = true, dataType = "AdminParam"),
+    })
+    public Result<Long> insertAdmin(@RequestBody AdminParam param,
                                         HttpServletRequest request, HttpServletResponse response){
         try {
+            param.setId(null);
             AdminBean bean = new AdminBean();
             SelfBeanUtils.copyProperties(param, bean);
             if(admin.getAdminByName(param.getLoginName()) != null){
@@ -81,8 +89,15 @@ public class AdminController extends BaseController {
     }
 
     @ApiOperation(value = "更新admin", notes = "更新admin", response = UserBean.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "param", value = "用户名", required = true, dataType = "AdminParam"),
+    })
     @RequestMapping(value = "/updateAdmin", method = { RequestMethod.PUT }, produces = "application/json;charset=utf-8")
-    public Result<AdminBean> updateAdmin(@ModelAttribute AdminParam param,
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+    public Result<AdminBean> updateAdmin(@RequestBody AdminParam param,
                                          HttpServletRequest request, HttpServletResponse response){
         try {
             AdminBean bean = new AdminBean();
