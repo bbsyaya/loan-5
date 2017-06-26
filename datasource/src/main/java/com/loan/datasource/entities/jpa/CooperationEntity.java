@@ -30,7 +30,7 @@ public class CooperationEntity {
     private Integer deadline;
 
     @Basic
-    @Column(name = "top_qota", nullable = true)
+    @Column(name = "deadline", nullable = true)
     public Integer getDeadline() {
         return deadline;
     }
