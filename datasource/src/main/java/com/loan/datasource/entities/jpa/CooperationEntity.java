@@ -27,7 +27,17 @@ public class CooperationEntity {
     private Timestamp updateTime;
     private Integer orderNo;
     private Byte enabled;
+    private Integer deadline;
 
+    @Basic
+    @Column(name = "top_qota", nullable = true)
+    public Integer getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Integer deadline) {
+        this.deadline = deadline;
+    }
 //    @OneToMany(cascade = {CascadeType.ALL})
 //    @JoinTable(name="cooperation_type",
 //            joinColumns={@JoinColumn(name="cooperation_id",referencedColumnName="id")},

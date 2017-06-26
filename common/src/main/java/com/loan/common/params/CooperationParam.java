@@ -16,6 +16,15 @@ public class CooperationParam {
     private String loanTime;
     private Integer orderNo;
     private Byte enabled;
+    private Integer deadline;
+
+    public Integer getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Integer deadline) {
+        this.deadline = deadline;
+    }
 
     public long getId() {
         return id;
