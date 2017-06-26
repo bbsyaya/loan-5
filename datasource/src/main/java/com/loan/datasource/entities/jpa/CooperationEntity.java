@@ -2,13 +2,18 @@ package com.loan.datasource.entities.jpa;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by shuttle on 6/23/17.
  */
 @Entity
-@Table(name = "cooperation", schema = "loan")
+@Table(name = "cooperation", schema = "loan", catalog = "")
 public class CooperationEntity {
+
+    @Id
+    @GeneratedValue
     private long id;
     private String appName;
     private String logo;
@@ -22,6 +27,28 @@ public class CooperationEntity {
     private Timestamp updateTime;
     private Integer orderNo;
     private Byte enabled;
+
+//    @OneToMany(cascade = {CascadeType.ALL})
+//    @JoinTable(name="cooperation_type",
+//            joinColumns={@JoinColumn(name="cooperation_id",referencedColumnName="id")},
+//            inverseJoinColumns ={@JoinColumn(name="module_id",referencedColumnName="id")}
+//    )
+//    private List<ModuleEntity> cooperationTypeEntityList;
+
+    private Set<ModuleEntity> modules;
+
+    @ManyToMany
+    @JoinTable(name="cooperation_type",
+            joinColumns={@JoinColumn(name="cooperation_id",referencedColumnName="id")},
+            inverseJoinColumns ={@JoinColumn(name="module_id",referencedColumnName="id")}
+    )
+    public Set<ModuleEntity> getModules() {
+        return modules;
+    }
+
+    public void setModules(Set<ModuleEntity> modules) {
+        this.modules = modules;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,7 +132,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "create_time", nullable = true)
+    @Column(name = "create_time", nullable = true, updatable=false)
     public Timestamp getCreateTime() {
         return createTime;
     }

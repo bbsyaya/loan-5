@@ -1,50 +1,46 @@
-package com.loan.common.beans;
+package com.loan.common.params;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
+/**
+ * Created by shuttle on 6/23/17.
+ */
+public class CooperationParam {
 
-import java.sql.Timestamp;
-
-public class CooperationBean {
-    private Long id;
-
+    private long id;
     private String appName;
-
     private String logo;
-
     private String rate;
-
     private String serviceCharge;
-
     private Integer topQota;
-
     private Integer bottomQota;
-
     private String outTime;
-
-    @Ignore
-    private Timestamp createTime;
-
-    @Ignore
-    private Timestamp updateTime;
-
+    private String loanTime;
     private Integer orderNo;
-
     private Byte enabled;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
+
+    public long getType() {
+        return type;
+    }
+
+    public void setType(long type) {
+        this.type = type;
+    }
+
+    private long type;
 
     public String getAppName() {
         return appName;
     }
 
     public void setAppName(String appName) {
-        this.appName = appName == null ? null : appName.trim();
+        this.appName = appName;
     }
 
     public String getLogo() {
@@ -52,7 +48,7 @@ public class CooperationBean {
     }
 
     public void setLogo(String logo) {
-        this.logo = logo == null ? null : logo.trim();
+        this.logo = logo;
     }
 
     public String getRate() {
@@ -60,7 +56,7 @@ public class CooperationBean {
     }
 
     public void setRate(String rate) {
-        this.rate = rate == null ? null : rate.trim();
+        this.rate = rate;
     }
 
     public String getServiceCharge() {
@@ -68,7 +64,7 @@ public class CooperationBean {
     }
 
     public void setServiceCharge(String serviceCharge) {
-        this.serviceCharge = serviceCharge == null ? null : serviceCharge.trim();
+        this.serviceCharge = serviceCharge;
     }
 
     public Integer getTopQota() {
@@ -92,24 +88,18 @@ public class CooperationBean {
     }
 
     public void setOutTime(String outTime) {
-        this.outTime = outTime == null ? null : outTime.trim();
+        this.outTime = outTime;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
+
+    public String getLoanTime() {
+        return loanTime;
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
+    public void setLoanTime(String loanTime) {
+        this.loanTime = loanTime;
     }
 
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
 
     public Integer getOrderNo() {
         return orderNo;
@@ -126,5 +116,4 @@ public class CooperationBean {
     public void setEnabled(Byte enabled) {
         this.enabled = enabled;
     }
-
 }

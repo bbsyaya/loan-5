@@ -1,18 +1,27 @@
 package com.loan.admin.service.hotloan.impl;
 
 import com.loan.admin.service.hotloan.ICooperation;
+import com.loan.admin.utils.PageUtils;
 import com.loan.common.beans.CooperationBean;
+import com.loan.common.params.CooperationParam;
 import com.loan.common.utils.DateUtils;
 import com.loan.datasource.dao.CooperationDao;
 import com.loan.datasource.dao.springdata.CooperationRepository;
+import com.loan.datasource.dao.springdata.CooperationTypeRepository;
+import com.loan.datasource.dao.springdata.ModuleRepository;
 import com.loan.datasource.entities.Cooperation;
+import com.loan.datasource.entities.jpa.CooperationEntity;
+import com.loan.datasource.entities.jpa.ModuleEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by shuttle on 5/25/17.
@@ -24,7 +33,13 @@ public class CooperationImpl implements ICooperation {
     private CooperationDao cooperationDao;
 
     @Autowired
-    private CooperationRepository cDao;
+    private CooperationRepository cooperationRepository;
+
+    @Autowired
+    private CooperationTypeRepository cooperationTypeRepository;
+
+    @Autowired
+    private ModuleRepository moduleRepository;
 
 
     public List<CooperationBean> getCooperationBeanByType(String type, int skip, int page){
@@ -38,49 +53,47 @@ public class CooperationImpl implements ICooperation {
         return beanList;
     }
 
-    public List<CooperationBean> getCooperationBeanByPage(int skip, int page){
-        List<CooperationBean> beanList = new ArrayList<CooperationBean>();
-        List<Cooperation> cooperationList = cooperationDao.findCooperationListByPage(skip, page);
-        for(Cooperation entity : cooperationList){
-            CooperationBean bean = new CooperationBean();
-            BeanUtils.copyProperties(entity, bean);
-            if(bean.getUpdateTime() != null) {
-                bean.setUpdateTimeString(DateUtils.formatTimeStampToString(bean.getUpdateTime()));
-            }
-
-            if(bean.getCreateTime() != null) {
-                bean.setCreateTimeString(DateUtils.formatTimeStampToString(bean.getCreateTime()));
-            }
-            beanList.add(bean);
+    public Page<CooperationEntity> getCooperationBeanByPage(long type, int pageNumber, int pageSize){
+        PageRequest request = PageUtils.buildPageRequest(pageNumber,pageSize);
+        if(type == 0){
+            return cooperationRepository.findAll(request);
         }
-        return beanList;
+        return cooperationRepository.findAllByModules_Id(type, request);
     }
 
-    public void updateCooperation(CooperationBean bean){
-        Cooperation cooperation = new Cooperation();
-        BeanUtils.copyProperties(bean, cooperation);
-        bean.setUpdateTime(DateUtils.formatToTimeStamp(new Date()));
-        cooperationDao.updateCooperation(cooperation);
+    public Page<CooperationEntity> getCooperationBeanByPage(int pageNumber, int pageSize){
+        PageRequest request = PageUtils.buildPageRequest(pageNumber,pageSize);
+        Page<CooperationEntity> entityList = cooperationRepository.findAll(request);
+        return entityList;
     }
 
-    public int insertCooperation(CooperationBean bean) throws Exception {
-        Cooperation cooperation = new Cooperation();
-        BeanUtils.copyProperties(bean, cooperation);
-        Date date = new Date();
-        bean.setCreateTime(DateUtils.formatToTimeStamp(date));
-        bean.setUpdateTime(DateUtils.formatToTimeStamp(date));
-        return cooperationDao.insertCooperation(cooperation);
+    public void updateCooperation(CooperationParam param){
+        CooperationEntity entity = new CooperationEntity();
+        BeanUtils.copyProperties(param, entity, "type");
+        ModuleEntity moduleEntity = moduleRepository.findOne(param.getType());
+        Set<ModuleEntity> set = new HashSet<>();
+        set.add(moduleEntity);
+        entity.setModules(set);
+        entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
+        cooperationRepository.save(entity);
+    }
+
+    public CooperationEntity saveCooperation(CooperationParam param){
+        CooperationEntity entity = new CooperationEntity();
+        BeanUtils.copyProperties(param, entity, "type");
+        ModuleEntity moduleEntity = moduleRepository.findOne(param.getType());
+        Set<ModuleEntity> set = new HashSet<>();
+        set.add(moduleEntity);
+        entity.setModules(set);
+        entity.setCreateTime(DateUtils.getCurrentTimeStamp());
+        entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
+        cooperationRepository.save(entity);
+        return cooperationRepository.save(entity);
     }
 
     public CooperationBean findById(long id) {
         CooperationBean bean = new CooperationBean();
-        BeanUtils.copyProperties(cooperationDao.findById(id), bean);
-        if(bean.getUpdateTime() != null) {
-            bean.setUpdateTimeString(DateUtils.formatTimeStampToString(bean.getUpdateTime()));
-        }
-        if(bean.getCreateTime() != null) {
-            bean.setCreateTimeString(DateUtils.formatTimeStampToString(bean.getCreateTime()));
-        }
+        BeanUtils.copyProperties(cooperationRepository.findOne(id), bean);
         return bean;
     }
 
@@ -91,5 +104,9 @@ public class CooperationImpl implements ICooperation {
 
     public int getCooperatorCount(int type){
         return cooperationDao.getCooperatorCount(type);
+    }
+
+    public Iterable<ModuleEntity> getAllModules(){
+        return moduleRepository.findAll();
     }
 }

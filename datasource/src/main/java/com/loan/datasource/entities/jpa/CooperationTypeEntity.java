@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by shuttle on 6/23/17.
  */
 @Entity
-@Table(name = "cooperation_type", schema = "loan")
+@Table(name = "cooperation_type", schema = "loan", catalog = "")
 public class CooperationTypeEntity {
 
     private long id;

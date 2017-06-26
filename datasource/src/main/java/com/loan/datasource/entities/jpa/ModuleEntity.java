@@ -7,9 +7,9 @@ import java.sql.Timestamp;
  * Created by shuttle on 6/23/17.
  */
 @Entity
-@Table(name = "module", schema = "loan", catalog = "")
+@Table(name = "module", schema = "loan")
 public class ModuleEntity {
-    private int id;
+    private long id;
     private String name;
     private String code;
     private Timestamp createTime;
@@ -18,14 +18,29 @@ public class ModuleEntity {
     private Byte index;
     private String logo;
 
+    //private Set<CooperationEntity> cooperationTypeEntityList;
+
+//    @ManyToMany(cascade = {CascadeType.ALL})
+//    @JoinTable(name="cooperation_type",
+//            joinColumns={@JoinColumn(name="module_id",referencedColumnName="id")},
+//            inverseJoinColumns ={@JoinColumn(name="cooperation_id",referencedColumnName="id")}
+//    )
+//    public Set<CooperationEntity> getCooperationTypeEntityList() {
+//        return cooperationTypeEntityList;
+//    }
+//    @ManyToMany(mappedBy = "moduleEntitys")
+//    public void setCooperationTypeEntityList(Set<CooperationEntity> cooperationTypeEntityList) {
+//        this.cooperationTypeEntityList = cooperationTypeEntityList;
+//    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -120,7 +135,7 @@ public class ModuleEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);

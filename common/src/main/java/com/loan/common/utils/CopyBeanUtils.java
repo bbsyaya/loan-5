@@ -20,4 +20,14 @@ public class CopyBeanUtils<E> {
         }
         return beanList;
     }
+
+    public static List copyBeanList(Class c, List<Object> sourceList){
+        List list = new ArrayList();
+        for(int i=0; i<sourceList.size(); i++){
+            BeanUtils.copyProperties(sourceList.get(i), c);
+            list.add(c);
+        }
+
+        return list;
+    }
 }

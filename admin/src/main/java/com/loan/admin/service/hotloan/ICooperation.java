@@ -1,6 +1,10 @@
 package com.loan.admin.service.hotloan;
 
 import com.loan.common.beans.CooperationBean;
+import com.loan.common.params.CooperationParam;
+import com.loan.datasource.entities.jpa.CooperationEntity;
+import com.loan.datasource.entities.jpa.ModuleEntity;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -15,22 +19,25 @@ public interface ICooperation {
      * @return
      */
     public List<CooperationBean> getCooperationBeanByType(String type, int skip, int page);
-    public List<CooperationBean> getCooperationBeanByPage(int skip, int page);
+
+    public Page<CooperationEntity> getCooperationBeanByPage(long type, int pageNumber, int pageSize);
+
+    public Page<CooperationEntity> getCooperationBeanByPage(int pageNumber, int pageSize);
 
     /**
      * 更新 Cooperation
-     * @param bean
+     * @param param
      * @return
      */
-    public void updateCooperation(CooperationBean bean);
+    public void updateCooperation(CooperationParam param);
 
     /**
      * 插入 Cooperation
-     * @param bean
+     * @param param
      * @return
      * @throws Exception
      */
-    public int insertCooperation(CooperationBean bean) throws Exception;
+    public CooperationEntity saveCooperation(CooperationParam param) throws Exception;
 
     /**
      * 插入合作商的类型
@@ -53,4 +60,6 @@ public interface ICooperation {
      * @return
      */
     public int getCooperatorCount(int type);
+
+    public Iterable<ModuleEntity> getAllModules();
 }
