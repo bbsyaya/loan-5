@@ -27,13 +27,6 @@ public class CooperationImpl implements ICooperation {
         for(Cooperation entity : cooperationList){
             CooperationBean bean = new CooperationBean();
             BeanUtils.copyProperties(entity, bean);
-            if(bean.getUpdateTime() != null) {
-                bean .setUpdateTimeString(DateUtils.formatTimeStampToString(bean.getUpdateTime()));
-            }
-
-            if(bean.getCreateTime() != null) {
-                bean.setCreateTimeString(DateUtils.formatTimeStampToString(bean.getCreateTime()));
-            }
             beanList.add(bean);
         }
         return beanList;
