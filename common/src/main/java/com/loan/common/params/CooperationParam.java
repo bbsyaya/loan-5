@@ -17,6 +17,15 @@ public class CooperationParam {
     private Integer orderNo;
     private Byte enabled;
     private Integer deadline;
+    private String visitUrl; //访问的url
+
+    public String getVisitUrl() {
+        return visitUrl;
+    }
+
+    public void setVisitUrl(String visitUrl) {
+        this.visitUrl = visitUrl;
+    }
 
     public Integer getDeadline() {
         return deadline;

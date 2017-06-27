@@ -91,10 +91,8 @@ public class CooperationImpl implements ICooperation {
         return cooperationRepository.save(entity);
     }
 
-    public CooperationBean findById(long id) {
-        CooperationBean bean = new CooperationBean();
-        BeanUtils.copyProperties(cooperationRepository.findOne(id), bean);
-        return bean;
+    public CooperationEntity findById(long id) {
+        return cooperationRepository.findOne(id);
     }
 
     public int insertCooperationType(long cid, long mid) throws Exception{

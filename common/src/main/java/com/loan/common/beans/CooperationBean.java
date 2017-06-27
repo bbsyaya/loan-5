@@ -31,6 +31,8 @@ public class CooperationBean {
 
     private Byte enabled;
 
+
+
     public Long getId() {
         return id;
     }

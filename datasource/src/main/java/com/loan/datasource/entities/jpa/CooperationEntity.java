@@ -28,6 +28,17 @@ public class CooperationEntity {
     private Integer orderNo;
     private Byte enabled;
     private Integer deadline;
+    private String visitUrl;
+
+    @Basic
+    @Column(name = "visit_url", nullable = true)
+    public String getVisitUrl() {
+        return visitUrl;
+    }
+
+    public void setVisitUrl(String visitUrl) {
+        this.visitUrl = visitUrl;
+    }
 
     @Basic
     @Column(name = "deadline", nullable = true)

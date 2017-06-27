@@ -66,10 +66,10 @@ public class HotLoanController extends BaseController {
 
     @ApiOperation(value = "获取某个商户信息", notes = "获取某个商户信息", response = Boolean.class)
     @RequestMapping(value = "/findHotLoanById/{id}", method = {RequestMethod.GET}, produces = "application/json;charset=utf-8")
-    public Result<CooperationBean> findHotLoanById(@PathVariable("id") long id) {
+    public Result<CooperationEntity> findHotLoanById(@PathVariable("id") long id) {
         try {
-            CooperationBean bean = cooperation.findById(id);
-            return successResult(bean);
+            CooperationEntity entity = cooperation.findById(id);
+            return successResult(entity);
         } catch (Exception e) {
             ExceptionUtils.printException("findHotLoanById controller报错：", e);
             return failResult(e);

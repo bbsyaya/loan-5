@@ -53,7 +53,7 @@ public interface ICooperation {
      * @param id
      * @return
      */
-    public CooperationBean findById(long id);
+    public CooperationEntity findById(long id);
 
     /**
      * 获取合作商的数量
