@@ -56,6 +56,9 @@ public class HotLoanController extends BaseController {
     })
     public Result<Boolean> updateHotLoan(@RequestBody CooperationParam param) {
         try {
+            if(param.getId() == 0){
+                return failResult(null, "id不能小于0！");
+            }
             cooperation.updateCooperation(param);
             return successResult(Boolean.TRUE);
         } catch (Exception e) {
