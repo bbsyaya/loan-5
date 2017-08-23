@@ -13,4 +13,6 @@ public interface ICooperation {
      * @return
      */
     Page<CooperationEntity> getCooperationBeanByType(int pageNum, int pageSize);
+
+    CooperationEntity findById(long id);
 }

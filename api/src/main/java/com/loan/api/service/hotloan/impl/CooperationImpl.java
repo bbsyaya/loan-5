@@ -30,4 +30,9 @@ public class CooperationImpl implements ICooperation {
         Page<CooperationEntity> cooperationList = cooperationRepository.findAll(pageable);
         return cooperationList;
     }
+
+    @Override
+    public CooperationEntity findById(long id) {
+        return cooperationRepository.findOne(id);
+    }
 }

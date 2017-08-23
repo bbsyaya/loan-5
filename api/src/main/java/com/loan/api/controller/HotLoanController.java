@@ -27,7 +27,7 @@ public class HotLoanController extends BaseController  {
     @Autowired
     private ICooperation cooperation;
 
-    @ApiOperation(value = "获取热门贷款列表", notes = "获取热门贷款列表，0 全部 1 极速放贷 2 帮你推荐 3 办信用卡 4 热门贷款", response = Boolean.class)
+    @ApiOperation(value = "获取热门贷款列表", notes = "获取热门贷款列表，0 全部 1 极速放贷 2 帮你推荐 3 办信用卡 4 热门贷款", response = Result.class)
     @RequestMapping(value = "/getHotLoan", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
     public Result<Page<CooperationEntity>> getHotLoan(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize,
                                                       HttpServletRequest request, HttpServletResponse response){
@@ -35,6 +35,19 @@ public class HotLoanController extends BaseController  {
         try {
             Page<CooperationEntity> beanList = cooperation.getCooperationBeanByType(pageNum, pageSize);
             return successResult(beanList);
+        }catch (Exception e){
+            ExceptionUtils.printException("getHotLoan controller报错：", e);
+            return failResult(e);
+        }
+    }
+
+    @ApiOperation(value = "根据Id获取某个详细信息", notes = "", response = CooperationEntity.class)
+    @RequestMapping(value = "/getHotLoanById/{id}", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
+    public Result<CooperationEntity> getHotLoan(@PathVariable("id") long id,
+                                                      HttpServletRequest request, HttpServletResponse response){
+        try {
+            CooperationEntity bean = cooperation.findById(id);
+            return successResult(bean);
         }catch (Exception e){
             ExceptionUtils.printException("getHotLoan controller报错：", e);
             return failResult(e);
