@@ -1,6 +1,5 @@
 package com.loan.datasource;
 
-import com.loan.datasource.dao.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @TestPropertySource(locations = "file:/Users/shuttle/develop/loan/datasource/src/main/resources/jdbc.properties")
 public class DatasourceTest {
 
-    @Autowired
-    UserDao dao;
+//    @Autowired
+//    UserDao dao;
 
     @Test
     public void checkUser() {

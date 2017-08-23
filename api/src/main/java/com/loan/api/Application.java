@@ -11,8 +11,8 @@ import org.springframework.context.annotation.PropertySource;
  */
 @SpringBootApplication
 @ServletComponentScan
-@ComponentScan(value = { "com.loan.datasource", "com.loan.api", "springfox.documentation"})
-@PropertySource("classpath:/jdbc.properties")
+@ComponentScan(value = { "com.loan.api", "springfox.documentation"})
+@PropertySource("classpath:/application.properties")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

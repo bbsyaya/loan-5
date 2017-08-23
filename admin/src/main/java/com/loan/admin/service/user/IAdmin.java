@@ -2,7 +2,6 @@ package com.loan.admin.service.user;
 
 import com.loan.common.beans.AdminBean;
 import com.loan.common.params.AdminParam;
-import com.loan.datasource.entities.jpa.AdminEntity;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

@@ -2,8 +2,6 @@ package com.loan.admin.service.hotloan;
 
 import com.loan.common.beans.CooperationBean;
 import com.loan.common.params.CooperationParam;
-import com.loan.datasource.entities.jpa.CooperationEntity;
-import com.loan.datasource.entities.jpa.ModuleEntity;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

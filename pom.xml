@@ -100,11 +100,25 @@
 			</dependency>
 
 			<!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
+			<!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
 			<dependency>
 				<groupId>org.redisson</groupId>
 				<artifactId>redisson</artifactId>
-				<version>3.4.2</version>
+				<version>3.4.3</version>
 			</dependency>
+
+			<!-- json web token -->
+			<dependency>
+				<groupId>com.auth0</groupId>
+				<artifactId>java-jwt</artifactId>
+				<version>3.1.0</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>0.7.0</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 </project>

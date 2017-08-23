@@ -11,8 +11,6 @@ import com.loan.common.params.PageParam;
 import com.loan.common.utils.DateUtils;
 import com.loan.common.utils.ExceptionUtils;
 import com.loan.common.utils.SelfBeanUtils;
-import com.loan.datasource.entities.Admin;
-import com.loan.datasource.entities.jpa.AdminEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

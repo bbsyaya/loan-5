@@ -1,4 +1,4 @@
-package com.loan.datasource.entities.jpa;
+package com.loan.api.dao.jpa;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

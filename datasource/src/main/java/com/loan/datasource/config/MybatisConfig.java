@@ -19,8 +19,8 @@ import java.util.Properties;
  * 1）创建数据源
  * 2）创建SqlSessionFactory
  */
-@Configuration    //该注解类似于spring配置文件
-@MapperScan("com.loan.datasource.mappers")
+//@Configuration    //该注解类似于spring配置文件
+//@MapperScan("com.loan.datasource.mappers")
 public class MybatisConfig {
 
     @Autowired
@@ -31,8 +31,8 @@ public class MybatisConfig {
      *
      * @Primary 该注解表示在同一个接口有多个实现类可以注入的时候，默认选择哪一个，而不是让@autowire注解报错
      */
-    @Bean
-    @Primary
+//    @Bean
+//    @Primary
     public DataSource getDataSource() throws Exception {
         Properties props = new Properties();
         props.put("driverClassName", env.getProperty("jdbc.driverClassName"));
@@ -45,7 +45,7 @@ public class MybatisConfig {
     /**
      * 根据数据源创建SqlSessionFactory
      */
-    @Bean
+//    @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource ds) throws Exception {
         SqlSessionFactoryBean fb = new SqlSessionFactoryBean();
         fb.setDataSource(ds);//指定数据源(这个必须有，否则报错)

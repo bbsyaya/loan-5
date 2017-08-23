@@ -5,20 +5,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by shuttle on 6/21/17.
  */
-//@NoRepositoryBean
+@NoRepositoryBean
 public interface CooperationRepository extends PagingAndSortingRepository<CooperationEntity, Long>, CrudRepository<CooperationEntity, Long>, JpaSpecificationExecutor<CooperationEntity> {
-//    @Query("select c.*" +
-//            "from cooperation c " +
-//            "inner join cooperation_type t on c.id = t.cooperation_id " +
-//            "where t.module_id=?1 " +
-//            "and enabled=1 /*#pageable}*/"，
-//            nativeQuery = true)
-//    public List<CooperationEntity> findByTypePageing(long type, int pageNum, int PageSize);
-
-    public Page<CooperationEntity> findAllByModules_Id(long moduleId, Pageable pageable);
+    Page<CooperationEntity> findAllByModuleId(long moduleId, Pageable pageable);
 }

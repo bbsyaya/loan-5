@@ -2,21 +2,13 @@ package com.loan.admin.controller;
 
 import com.loan.admin.consts.Constants;
 import com.loan.admin.service.hotloan.ICooperation;
-import com.loan.common.beans.CooperationBean;
 import com.loan.common.beans.Result;
-import com.loan.common.beans.UserBean;
 import com.loan.common.params.CooperationParam;
-import com.loan.common.params.LoanParam;
 import com.loan.common.utils.ExceptionUtils;
-import com.loan.datasource.entities.jpa.CooperationEntity;
-import com.loan.datasource.entities.jpa.ModuleEntity;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by shuttle on 5/25/17.

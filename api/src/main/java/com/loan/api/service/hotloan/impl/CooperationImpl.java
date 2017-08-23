@@ -1,12 +1,14 @@
 package com.loan.api.service.hotloan.impl;
 
+import com.loan.api.dao.jpa.CooperationEntity;
+import com.loan.api.dao.repository.CoopRepository;
 import com.loan.api.service.hotloan.ICooperation;
 import com.loan.common.beans.CooperationBean;
-import com.loan.common.utils.DateUtils;
-import com.loan.datasource.dao.CooperationDao;
-import com.loan.datasource.entities.Cooperation;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,16 +21,13 @@ import java.util.List;
 public class CooperationImpl implements ICooperation {
 
     @Autowired
-    private CooperationDao cooperationDao;
+    private CoopRepository cooperationRepository;
 
-    public List<CooperationBean> getCooperationBeanByType(String type, int skip, int page){
+    public Page<CooperationEntity> getCooperationBeanByType(int pageNum, int pageSize){
         List<CooperationBean> beanList = new ArrayList<CooperationBean>();
-        List<Cooperation> cooperationList = cooperationDao.findCooperationList(type, skip, page);
-        for(Cooperation entity : cooperationList){
-            CooperationBean bean = new CooperationBean();
-            BeanUtils.copyProperties(entity, bean);
-            beanList.add(bean);
-        }
-        return beanList;
+        Sort sort = new Sort(Sort.Direction.DESC, "order");
+        Pageable pageable = new PageRequest(pageNum, pageSize, sort);
+        Page<CooperationEntity> cooperationList = cooperationRepository.findAll(pageable);
+        return cooperationList;
     }
 }
