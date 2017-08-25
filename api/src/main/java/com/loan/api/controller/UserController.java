@@ -1,7 +1,16 @@
 package com.loan.api.controller;
 
 import com.loan.api.consts.Constants;
+import com.loan.api.dao.jpa.UserEntity;
+import com.loan.api.service.user.IUserService;
+import com.loan.common.beans.Result;
+import com.loan.common.params.UserParam;
+import com.loan.common.utils.AesUtil;
+import com.loan.common.utils.DateUtils;
+import com.loan.common.utils.ExceptionUtils;
+import com.loan.common.utils.Md5Utils;
 import io.swagger.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -12,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(Constants.BASE_URL + "/user")
 @Api(description = "用户相关")
 public class UserController extends BaseController {
+
+    @Autowired
+    IUserService userService;
 //    @Autowired
 //    IUser user;
 //
@@ -59,53 +71,46 @@ public class UserController extends BaseController {
 //        }
 //    }
 //
-//    @ApiOperation(value = "用户注册", notes = "用户注册", response = boolean.class)
-//    @ApiImplicitParams({
-//        @ApiImplicitParam(name = "param", value = "用户名", required = true, dataType = "UserParam"),
-//    })
-//    @RequestMapping(value = "/register", method = { RequestMethod.PUT }, produces = "application/json;charset=utf-8")
-//    @ApiResponses({
-//            @ApiResponse(code = 400, message = "请求参数没填好"),
-//            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
-//    })
-//    public Result<Boolean> register(@RequestBody UserParam param){
-//        try {
-//            UserBean bean = new UserBean();
-//            bean.setLoginName(param.getLoginName());
-//            bean.setPassword(Md5Utils.stringMD5(param.getPassword()));
-//            bean = user.insertUser(bean);
-//            if(null != bean){
-//                return successResult(Boolean.TRUE);
-//            }else{
-//                return failResult(Boolean.FALSE, "该用户已经存在！");
-//            }
-//        }catch (Exception e){
-//            ExceptionUtils.printException("register controller报错：", e);
-//            e.printStackTrace();
-//        }
-//        return failResult(Boolean.FALSE, "注册失败！");
-//    }
-//
-//    @ApiOperation(value = "用户登录", notes = "用户登录", response = boolean.class)
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(paramType = "query", name = "loginName", value = "用户名", required = true, dataType = "String"),
-//            @ApiImplicitParam(paramType = "query", name = "pwd", value = "密码", required = true, dataType = "String"),
-//    })
-//    @RequestMapping(value = "/login", method = { RequestMethod.POST}, produces = "application/json;charset=utf-8")
-//    @ApiResponses({
-//            @ApiResponse(code = 400, message = "请求参数没填好"),
-//            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
-//    })
-//    public Result<String> login(@RequestParam("loginName") String loginName, @RequestParam("pwd") String pwd){
-//        try {
-//            String token = user.login(loginName, Md5Utils.stringMD5(pwd));
-//            if(null != token){
-//                return successResult(token, "登录成功！");
-//            }
-//        }catch (Exception e){
-//            ExceptionUtils.printException("login controller报错：", e);
-//            e.printStackTrace();
-//        }
-//        return failResult("", "登录失败！");
-//    }
+    @ApiOperation(value = "用户注册", notes = "用户注册", response = boolean.class)
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "param", value = "用户名", required = true, dataType = "UserParam"),
+    })
+    @RequestMapping(value = "/register", method = { RequestMethod.PUT }, produces = "application/json;charset=utf-8")
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+    public Result<UserEntity> register(@RequestBody UserParam param){
+        try {
+            Result<UserEntity> result = userService.register(param);
+            return result;
+        }catch (Exception e){
+            ExceptionUtils.printException("register controller报错：", e);
+            e.printStackTrace();
+        }
+        return failResult();
+    }
+
+    @ApiOperation(value = "用户登录", notes = "用户登录", response = boolean.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "loginName", value = "用户名", required = true, dataType = "String"),
+            @ApiImplicitParam(paramType = "query", name = "pwd", value = "密码", required = true, dataType = "String"),
+    })
+    @RequestMapping(value = "/login", method = { RequestMethod.POST}, produces = "application/json;charset=utf-8")
+    @ApiResponses({
+            @ApiResponse(code = 400, message = "请求参数没填好"),
+            @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
+    })
+    public Result<String> login(@RequestParam("loginName") String loginName, @RequestParam("pwd") String pwd){
+        try {
+            UserEntity entity = userService.login(loginName, pwd);
+            if(null != entity){
+                return successResult("登录成功！");
+            }
+        }catch (Exception e){
+            ExceptionUtils.printException("login controller报错：", e);
+            e.printStackTrace();
+        }
+        return failResult("", "登录失败！");
+    }
 }
