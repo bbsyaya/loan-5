@@ -42,8 +42,8 @@ public class HotLoanController extends BaseController  {
     }
 
     @ApiOperation(value = "根据Id获取某个详细信息", notes = "", response = CooperationEntity.class)
-    @RequestMapping(value = "/getHotLoanById/{id}", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
-    public Result<CooperationEntity> getHotLoan(@PathVariable("id") long id,
+    @RequestMapping(value = "/getHotLoanById", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
+    public Result<CooperationEntity> getHotLoan(@RequestParam("id") long id,
                                                       HttpServletRequest request, HttpServletResponse response){
         try {
             CooperationEntity bean = cooperation.findById(id);
