@@ -7,7 +7,6 @@ import java.sql.Timestamp;
  * @Description:
  * @author: shuttle
  * @date: 2017-08-29 4:46 PM
- * @company: 北京鼎力创世科技有限公司
  */
 @Entity
 @Table(name = "pvuv", schema = "loan", catalog = "")

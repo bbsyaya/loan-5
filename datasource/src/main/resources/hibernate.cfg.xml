@@ -6,9 +6,10 @@
   <session-factory>
     <property name="connection.url">jdbc:mysql://120.92.112.75:3306/loan</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-      <mapping class="com.loan.datasource.entities.jpa.CooperationEntity"/>
+    <mapping class="com.loan.datasource.entities.jpa.CooperationEntity"/>
       <mapping class="com.loan.datasource.entities.jpa.UserEntity"/>
-      <!-- <property name="connection.username"/> -->
+    <mapping class="com.loan.datasource.entities.jpa.PvuvEntity"/>
+    <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
     <!-- DB schema will be updated if needed -->

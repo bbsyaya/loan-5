@@ -101,16 +101,21 @@ public class UserController extends BaseController {
             @ApiResponse(code = 400, message = "请求参数没填好"),
             @ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对")
     })
-    public Result<String> login(@RequestParam("loginName") String loginName, @RequestParam("pwd") String pwd){
+    public Result<UserEntity> login(@RequestParam("loginName") String loginName, @RequestParam("pwd") String pwd){
         try {
+            Result<UserEntity> result = new Result<>();
             UserEntity entity = userService.login(loginName, pwd);
+            entity.setPassword("******");
             if(null != entity){
-                return successResult("登录成功！");
+                result.setMessage("登录成功！");
+                result.setObj(entity);
+                result.setCode(1);
+                return result;
             }
         }catch (Exception e){
             ExceptionUtils.printException("login controller报错：", e);
             e.printStackTrace();
         }
-        return failResult("", "登录失败！");
+        return failResult(null, "登录失败！");
     }
 }

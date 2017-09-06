@@ -16,6 +16,7 @@ public class PvuvEntity {
     private Long cooperId;
     private Timestamp createTime;
     private Long userId;
+    private Integer type;
 
     @Id
     @Column(name = "id")
@@ -92,5 +93,15 @@ public class PvuvEntity {
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "type")
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

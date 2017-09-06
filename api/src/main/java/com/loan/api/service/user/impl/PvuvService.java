@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
  * @Description: 实现
  * @author: shuttle
  * @date: 2017-08-28 11:27 PM
- * @company: 北京鼎力创世科技有限公司
  */
 @Service
 public class PvuvService implements IPvuvService {
@@ -27,6 +26,7 @@ public class PvuvService implements IPvuvService {
         entity.setIp(param.getIp());
         entity.setUserId(param.getUserId());
         entity.setCreateTime(DateUtils.getCurrentTimeStamp());
+        entity.setType(param.getType());
         return pvuvRepository.save(entity);
     }
 }
