@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * @company: 北京鼎力创世科技有限公司
  */
 @Entity
-@Table(name = "cooperation", schema = "loan")
+@Table(name = "cooperation", schema = "loan", catalog = "")
 public class CooperationEntity {
     private long id;
     private String logo;
@@ -28,6 +28,7 @@ public class CooperationEntity {
     private Timestamp createTime;
     private Timestamp updateTime;
     private Integer order;
+    private String url;
 
     @Id
     @Column(name = "id")
@@ -50,7 +51,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "appName")
+    @Column(name = "app_name")
     public String getAppName() {
         return appName;
     }
@@ -60,7 +61,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "checkDes")
+    @Column(name = "check_des")
     public String getCheckDes() {
         return checkDes;
     }
@@ -70,7 +71,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "usersNum")
+    @Column(name = "users_num")
     public Long getUsersNum() {
         return usersNum;
     }
@@ -100,7 +101,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "limitTime")
+    @Column(name = "limit_time")
     public String getLimitTime() {
         return limitTime;
     }
@@ -110,7 +111,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "deadLine")
+    @Column(name = "dead_line")
     public String getDeadLine() {
         return deadLine;
     }
@@ -160,7 +161,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "createTime")
+    @Column(name = "create_time")
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -170,7 +171,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "updateTime")
+    @Column(name = "update_time")
     public Timestamp getUpdateTime() {
         return updateTime;
     }
@@ -233,5 +234,15 @@ public class CooperationEntity {
 
     public void setOrder(Integer order) {
         this.order = order;
+    }
+
+    @Basic
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

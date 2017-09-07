@@ -6,19 +6,22 @@ import java.sql.Timestamp;
 /**
  * @Description:
  * @author: shuttle
- * @date: 2017-08-29 4:46 PM
+ * @date: 2017-08-29 4:34 PM
  */
 @Entity
-@Table(name = "pvuv", schema = "loan", catalog = "")
+@Table(name = "pvuv", schema = "loan")
 public class PvuvEntity {
     private long id;
     private String ip;
     private Long cooperId;
     private Timestamp createTime;
     private Long userId;
+    private Integer type;
+    private String url;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -91,5 +94,25 @@ public class PvuvEntity {
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "type")
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    @Basic
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

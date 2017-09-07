@@ -4,14 +4,18 @@ import com.loan.admin.service.hotloan.ICooperation;
 import com.loan.admin.utils.PageUtils;
 import com.loan.common.beans.CooperationBean;
 import com.loan.common.params.CooperationParam;
+import com.loan.common.utils.CopyBeanUtils;
 import com.loan.common.utils.DateUtils;
-import com.loan.datasource.dao.springdata.CooperationRepository;
+import com.loan.datasource.dao.springdata.CoopRepository;
+import com.loan.datasource.entities.jpa.CooperationEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,82 +27,46 @@ import java.util.Set;
 @Service
 public class CooperationImpl implements ICooperation {
 
-    @Autowired
-    private CooperationDao cooperationDao;
 
     @Autowired
-    private CooperationRepository cooperationRepository;
+    private CoopRepository coopRepository;
 
-    @Autowired
-    private CooperationTypeRepository cooperationTypeRepository;
-
-    @Autowired
-    private ModuleRepository moduleRepository;
-
-
-    public List<CooperationBean> getCooperationBeanByType(String type, int skip, int page){
+    @Override
+    public Page<CooperationEntity> getCooperationByPage(int pageSize, int pageNum){
         List<CooperationBean> beanList = new ArrayList<CooperationBean>();
-        List<Cooperation> cooperationList = cooperationDao.findCooperationList(type, skip, page);
-        for(Cooperation entity : cooperationList){
-            CooperationBean bean = new CooperationBean();
-            BeanUtils.copyProperties(entity, bean);
-            beanList.add(bean);
-        }
-        return beanList;
+        Sort sort = new Sort(Sort.Direction.DESC, "order");
+        Pageable pageable = new PageRequest(pageNum, pageSize, sort);
+        Page<CooperationEntity> cooperationList = coopRepository.findAll(pageable);
+        return cooperationList;
     }
 
-    public Page<CooperationEntity> getCooperationBeanByPage(long type, int pageNumber, int pageSize){
-        PageRequest request = PageUtils.buildPageRequest(pageNumber,pageSize);
-        if(type == 0){
-            return cooperationRepository.findAll(request);
-        }
-        return cooperationRepository.findAllByModules_Id(type, request);
-    }
-
-    public Page<CooperationEntity> getCooperationBeanByPage(int pageNumber, int pageSize){
-        PageRequest request = PageUtils.buildPageRequest(pageNumber,pageSize);
-        Page<CooperationEntity> entityList = cooperationRepository.findAll(request);
-        return entityList;
-    }
-
-    public void updateCooperation(CooperationParam param){
+    @Override
+    public CooperationEntity insert(CooperationParam param){
         CooperationEntity entity = new CooperationEntity();
-        BeanUtils.copyProperties(param, entity, "type");
-        ModuleEntity moduleEntity = moduleRepository.findOne(param.getType());
-        Set<ModuleEntity> set = new HashSet<>();
-        set.add(moduleEntity);
-        entity.setModules(set);
-        entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
-        cooperationRepository.save(entity);
-    }
-
-    public CooperationEntity saveCooperation(CooperationParam param){
-        CooperationEntity entity = new CooperationEntity();
-        BeanUtils.copyProperties(param, entity, "type");
-        ModuleEntity moduleEntity = moduleRepository.findOne(param.getType());
-        Set<ModuleEntity> set = new HashSet<>();
-        set.add(moduleEntity);
-        entity.setModules(set);
+        BeanUtils.copyProperties(param, entity);
+        entity.setId(null);
         entity.setCreateTime(DateUtils.getCurrentTimeStamp());
         entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
-        cooperationRepository.save(entity);
-        return cooperationRepository.save(entity);
+        return coopRepository.save(entity);
     }
 
-    public CooperationEntity findById(long id) {
-        return cooperationRepository.findOne(id);
+    @Override
+    public CooperationEntity update(CooperationParam param){
+        if(param == null || param.getId() == null){
+            return null;
+        }
+        CooperationEntity e = new CooperationEntity();
+        BeanUtils.copyProperties(param, e);
+        coopRepository.findOne(e.getId());
+        if(e == null){
+            return null;
+        }
+        return coopRepository.save(e);
     }
 
-    public int insertCooperationType(long cid, long mid) throws Exception{
-        return cooperationDao.insertCatagory(cid, mid);
+    @Override
+    public CooperationEntity findOneById(Long id){
+        return coopRepository.findOne(id);
     }
 
-
-    public int getCooperatorCount(int type){
-        return cooperationDao.getCooperatorCount(type);
-    }
-
-    public Iterable<ModuleEntity> getAllModules(){
-        return moduleRepository.findAll();
-    }
 }

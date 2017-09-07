@@ -10,9 +10,18 @@ public class PuvParam {
     private Long cooperId;
     private String ip;
     private Integer type;
+    private String url;
 
     public Integer getType() {
         return type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public void setType(Integer type) {
@@ -42,4 +51,6 @@ public class PuvParam {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
+
 }

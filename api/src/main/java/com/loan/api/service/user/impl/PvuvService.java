@@ -27,6 +27,7 @@ public class PvuvService implements IPvuvService {
         entity.setUserId(param.getUserId());
         entity.setCreateTime(DateUtils.getCurrentTimeStamp());
         entity.setType(param.getType());
+        entity.setUrl(param.getUrl());
         return pvuvRepository.save(entity);
     }
 }

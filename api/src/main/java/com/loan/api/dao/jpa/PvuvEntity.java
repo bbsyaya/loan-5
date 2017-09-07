@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * @date: 2017-08-29 4:34 PM
  */
 @Entity
-@Table(name = "pvuv", schema = "loan", catalog = "")
+@Table(name = "pvuv", schema = "loan")
 public class PvuvEntity {
     private long id;
     private String ip;
@@ -17,6 +17,7 @@ public class PvuvEntity {
     private Timestamp createTime;
     private Long userId;
     private Integer type;
+    private String url;
 
     @Id
     @Column(name = "id")
@@ -103,5 +104,15 @@ public class PvuvEntity {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    @Basic
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

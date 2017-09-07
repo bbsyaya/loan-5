@@ -1,64 +1,34 @@
 package com.loan.common.params;
 
+import java.sql.Timestamp;
+
 /**
  * Created by shuttle on 6/23/17.
  */
 public class CooperationParam {
 
-    private long id;
-    private String appName;
+    private Long id;
     private String logo;
+    private String appName;
+    private String checkDes;
+    private Long usersNum;
     private String rate;
-    private String serviceCharge;
-    private Integer topQota;
-    private Integer bottomQota;
-    private String outTime;
-    private String loanTime;
-    private Integer orderNo;
-    private Byte enabled;
-    private Integer deadline;
-    private String visitUrl; //访问的url
+    private String service;
+    private String limitTime;
+    private String deadLine;
+    private Integer quta;
+    private String flow;
+    private String condition;
+    private String commit;
+    private Integer order;
+    private String url;
 
-    public String getVisitUrl() {
-        return visitUrl;
-    }
-
-    public void setVisitUrl(String visitUrl) {
-        this.visitUrl = visitUrl;
-    }
-
-    public Integer getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Integer deadline) {
-        this.deadline = deadline;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public long getType() {
-        return type;
-    }
-
-    public void setType(long type) {
-        this.type = type;
-    }
-
-    private long type;
-
-    public String getAppName() {
-        return appName;
-    }
-
-    public void setAppName(String appName) {
-        this.appName = appName;
     }
 
     public String getLogo() {
@@ -69,6 +39,30 @@ public class CooperationParam {
         this.logo = logo;
     }
 
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+    }
+
+    public String getCheckDes() {
+        return checkDes;
+    }
+
+    public void setCheckDes(String checkDes) {
+        this.checkDes = checkDes;
+    }
+
+    public Long getUsersNum() {
+        return usersNum;
+    }
+
+    public void setUsersNum(Long usersNum) {
+        this.usersNum = usersNum;
+    }
+
     public String getRate() {
         return rate;
     }
@@ -77,61 +71,75 @@ public class CooperationParam {
         this.rate = rate;
     }
 
-    public String getServiceCharge() {
-        return serviceCharge;
+    public String getService() {
+        return service;
     }
 
-    public void setServiceCharge(String serviceCharge) {
-        this.serviceCharge = serviceCharge;
+    public void setService(String service) {
+        this.service = service;
     }
 
-    public Integer getTopQota() {
-        return topQota;
+    public String getLimitTime() {
+        return limitTime;
     }
 
-    public void setTopQota(Integer topQota) {
-        this.topQota = topQota;
+    public void setLimitTime(String limitTime) {
+        this.limitTime = limitTime;
     }
 
-    public Integer getBottomQota() {
-        return bottomQota;
+    public String getDeadLine() {
+        return deadLine;
     }
 
-    public void setBottomQota(Integer bottomQota) {
-        this.bottomQota = bottomQota;
+    public void setDeadLine(String deadLine) {
+        this.deadLine = deadLine;
     }
 
-    public String getOutTime() {
-        return outTime;
+    public Integer getQuta() {
+        return quta;
     }
 
-    public void setOutTime(String outTime) {
-        this.outTime = outTime;
+    public void setQuta(Integer quta) {
+        this.quta = quta;
     }
 
-
-    public String getLoanTime() {
-        return loanTime;
+    public String getFlow() {
+        return flow;
     }
 
-    public void setLoanTime(String loanTime) {
-        this.loanTime = loanTime;
+    public void setFlow(String flow) {
+        this.flow = flow;
     }
 
-
-    public Integer getOrderNo() {
-        return orderNo;
+    public String getCondition() {
+        return condition;
     }
 
-    public void setOrderNo(Integer orderNo) {
-        this.orderNo = orderNo;
+    public void setCondition(String condition) {
+        this.condition = condition;
     }
 
-    public Byte getEnabled() {
-        return enabled;
+    public String getCommit() {
+        return commit;
     }
 
-    public void setEnabled(Byte enabled) {
-        this.enabled = enabled;
+    public void setCommit(String commit) {
+        this.commit = commit;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
