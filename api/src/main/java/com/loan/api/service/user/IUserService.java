@@ -1,8 +1,8 @@
 package com.loan.api.service.user;
 
-import com.loan.api.dao.jpa.UserEntity;
 import com.loan.common.beans.Result;
 import com.loan.common.params.UserParam;
+import com.loan.datasource.entities.jpa.UserEntity;
 
 /**
  * @Description: 用户相关类

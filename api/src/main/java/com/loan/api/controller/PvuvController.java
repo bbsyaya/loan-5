@@ -1,14 +1,20 @@
 package com.loan.api.controller;
 
 import com.loan.api.consts.Constants;
-import com.loan.api.dao.jpa.PvuvEntity;
 import com.loan.api.service.user.IPvuvService;
 import com.loan.common.beans.Result;
 import com.loan.common.params.PuvParam;
 import com.loan.common.utils.ExceptionUtils;
-import io.swagger.annotations.*;
+import com.loan.datasource.entities.jpa.PvuvEntity;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

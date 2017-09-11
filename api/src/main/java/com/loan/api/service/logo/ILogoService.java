@@ -1,6 +1,7 @@
 package com.loan.api.service.logo;
 
-import com.loan.api.dao.jpa.LogoEntity;
+
+import com.loan.datasource.entities.jpa.LogoEntity;
 
 /**
  * @Description: logo服务类

@@ -16,6 +16,7 @@ public class LogoEntity {
     private String logoUrl;
     private Timestamp createTime;
     private Integer enabled;
+    private Integer type;
 
     @Id
     @Column(name = "id")
@@ -79,5 +80,15 @@ public class LogoEntity {
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "type")
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

@@ -1,11 +1,10 @@
 package com.loan.api.controller;
 
-import com.loan.api.dao.jpa.CooperationEntity;
 import com.loan.api.service.hotloan.ICooperation;
 import com.loan.common.beans.CooperationBean;
 import com.loan.common.beans.Result;
-import com.loan.common.params.LoanParam;
 import com.loan.common.utils.ExceptionUtils;
+import com.loan.datasource.entities.jpa.CooperationEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,7 @@ public class HotLoanController extends BaseController  {
             Page<CooperationEntity> beanList = cooperation.getCooperationBeanByType(pageNum, pageSize);
             return successResult(beanList);
         }catch (Exception e){
+            e.printStackTrace();
             ExceptionUtils.printException("getHotLoan controller报错：", e);
             return failResult(e);
         }

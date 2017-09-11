@@ -1,7 +1,7 @@
 package com.loan.api.service.user;
 
-import com.loan.api.dao.jpa.PvuvEntity;
 import com.loan.common.params.PuvParam;
+import com.loan.datasource.entities.jpa.PvuvEntity;
 
 /**
  * @Description: pvuv接口
@@ -9,5 +9,5 @@ import com.loan.common.params.PuvParam;
  * @date: 2017-08-28 11:27 PM
  */
 public interface IPvuvService {
-    public PvuvEntity savePvuvEntity(PuvParam param);
+    PvuvEntity savePvuvEntity(PuvParam param);
 }

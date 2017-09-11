@@ -1,8 +1,8 @@
 package com.loan.api.service.logo.impl;
 
-import com.loan.api.dao.jpa.LogoEntity;
-import com.loan.api.dao.repository.LogoRepository;
 import com.loan.api.service.logo.ILogoService;
+import com.loan.datasource.dao.springdata.LogoRepository;
+import com.loan.datasource.entities.jpa.LogoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

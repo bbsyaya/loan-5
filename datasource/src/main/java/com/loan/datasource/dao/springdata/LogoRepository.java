@@ -1,6 +1,6 @@
-package com.loan.api.dao.repository;
+package com.loan.datasource.dao.springdata;
 
-import com.loan.api.dao.jpa.LogoEntity;
+import com.loan.datasource.entities.jpa.LogoEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

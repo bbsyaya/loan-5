@@ -1,14 +1,12 @@
 package com.loan.api.service.user.impl;
 
-import com.loan.api.dao.jpa.UserEntity;
-import com.loan.api.dao.repository.UserRepository;
 import com.loan.api.service.user.IUserService;
 import com.loan.common.beans.Result;
 import com.loan.common.params.UserParam;
-import com.loan.common.utils.AesUtil;
 import com.loan.common.utils.DateUtils;
 import com.loan.common.utils.DesUtils;
-import org.bouncycastle.jcajce.provider.symmetric.AES;
+import com.loan.datasource.dao.springdata.UserRepository;
+import com.loan.datasource.entities.jpa.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

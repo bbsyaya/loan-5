@@ -1,9 +1,9 @@
 package com.loan.api.service.hotloan.impl;
 
-import com.loan.api.dao.jpa.CooperationEntity;
-import com.loan.api.dao.repository.CoopRepository;
 import com.loan.api.service.hotloan.ICooperation;
 import com.loan.common.beans.CooperationBean;
+import com.loan.datasource.dao.springdata.CoopRepository;
+import com.loan.datasource.entities.jpa.CooperationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -7,7 +7,6 @@ import com.loan.common.params.CooperationParam;
 import com.loan.common.utils.ExceptionUtils;
 import com.loan.datasource.entities.jpa.CooperationEntity;
 import io.swagger.annotations.*;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;

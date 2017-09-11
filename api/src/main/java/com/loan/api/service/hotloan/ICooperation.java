@@ -1,6 +1,6 @@
 package com.loan.api.service.hotloan;
 
-import com.loan.api.dao.jpa.CooperationEntity;
+import com.loan.datasource.entities.jpa.CooperationEntity;
 import org.springframework.data.domain.Page;
 
 /**
