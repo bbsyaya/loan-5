@@ -141,7 +141,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "condition")
+    @Column(name = "conditions")
     public String getCondition() {
         return condition;
     }
@@ -151,7 +151,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "commit")
+    @Column(name = "commits")
     public String getCommit() {
         return commit;
     }
@@ -227,7 +227,7 @@ public class CooperationEntity {
     }
 
     @Basic
-    @Column(name = "order")
+    @Column(name = "order_by")
     public Integer getOrder() {
         return order;
     }

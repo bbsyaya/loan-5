@@ -1,15 +1,10 @@
 package com.loan.admin.service.hotloan.impl;
 
 import com.loan.admin.service.hotloan.ICooperation;
-import com.loan.admin.utils.PageUtils;
 import com.loan.common.beans.CooperationBean;
 import com.loan.common.params.CooperationParam;
-import com.loan.common.utils.CopyBeanUtils;
-import com.loan.common.utils.DateUtils;
 import com.loan.datasource.dao.springdata.CoopRepository;
 import com.loan.datasource.entities.jpa.CooperationEntity;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,9 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by shuttle on 5/25/17.
@@ -43,10 +36,20 @@ public class CooperationImpl implements ICooperation {
     @Override
     public CooperationEntity insert(CooperationParam param){
         CooperationEntity entity = new CooperationEntity();
-        BeanUtils.copyProperties(param, entity);
-        entity.setId(null);
-        entity.setCreateTime(DateUtils.getCurrentTimeStamp());
-        entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
+        entity.setAppName(param.getAppName());
+        entity.setCheckDes(param.getCheckDes());
+        entity.setCommit(param.getCommit());
+        entity.setCondition(param.getCondition());
+        entity.setDeadLine(param.getDeadLine());
+        entity.setFlow(param.getFlow());
+        entity.setLimitTime(param.getLimitTime());
+        entity.setOrder(param.getOrder());
+        entity.setLogo(param.getLogo());
+        entity.setQuta(param.getQuta());
+        entity.setRate(param.getRate());
+        entity.setService(param.getService());
+        entity.setUrl(param.getUrl());
+        entity.setUsersNum(param.getUsersNum());
         return coopRepository.save(entity);
     }
 
@@ -55,13 +58,27 @@ public class CooperationImpl implements ICooperation {
         if(param == null || param.getId() == null){
             return null;
         }
-        CooperationEntity e = new CooperationEntity();
-        BeanUtils.copyProperties(param, e);
-        coopRepository.findOne(e.getId());
-        if(e == null){
+        CooperationEntity entity = new CooperationEntity();
+        entity.setId(param.getId());
+        entity.setAppName(param.getAppName());
+        entity.setCheckDes(param.getCheckDes());
+        entity.setCommit(param.getCommit());
+        entity.setCondition(param.getCondition());
+        entity.setDeadLine(param.getDeadLine());
+        entity.setFlow(param.getFlow());
+        entity.setLimitTime(param.getLimitTime());
+        entity.setOrder(param.getOrder());
+        entity.setLogo(param.getLogo());
+        entity.setQuta(param.getQuta());
+        entity.setRate(param.getRate());
+        entity.setService(param.getService());
+        entity.setUrl(param.getUrl());
+        entity.setUsersNum(param.getUsersNum());
+        coopRepository.findOne(entity.getId());
+        if(entity == null){
             return null;
         }
-        return coopRepository.save(e);
+        return coopRepository.save(entity);
     }
 
     @Override

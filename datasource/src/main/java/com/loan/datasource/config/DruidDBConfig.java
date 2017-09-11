@@ -1,12 +1,13 @@
 package com.loan.datasource.config;
 
-import java.sql.SQLException;
-import javax.sql.DataSource;
+import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import com.alibaba.druid.pool.DruidDataSource;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
 
 /**
  * DruidDBConfig类被@Configuration标注，用作配置信息；

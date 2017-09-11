@@ -82,6 +82,7 @@ public class HotLoanController extends BaseController {
             cooperation.insert(param);
             return successResult(true);
         } catch (Exception e) {
+            e.printStackTrace();
             ExceptionUtils.printException("insertHotLoan controller报错：", e);
             return failResult(e);
         }
