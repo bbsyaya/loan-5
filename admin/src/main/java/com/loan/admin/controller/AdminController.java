@@ -38,4 +38,22 @@ public class AdminController extends BaseController {
 
         return failResult(null, "登录失败！");
     }
+
+    @ApiOperation(value = "后台登录", notes = "后台登录", response = Boolean.class)
+    @RequestMapping(value = "/login", method = {RequestMethod.GET}, produces = "application/json;charset=utf-8")
+    public Result<String> login(@RequestParam("loginName") String loginName,
+                                   @RequestParam("pwd") String pwd) {
+        Result<String> result = new Result<>();
+        try {
+            if(loginName.equals("admin") && pwd.equals("123456")) {
+                return successResult("登录成功！");
+            }
+        } catch (Exception e) {
+            ExceptionUtils.printException("getLoanWithType controller报错：", e);
+            e.printStackTrace();
+            return failResult(e);
+        }
+
+        return failResult(null, "登录失败！");
+    }
 }
