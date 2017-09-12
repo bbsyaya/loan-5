@@ -7,14 +7,12 @@ package com.loan.admin.controller;
  */
 import com.loan.admin.consts.Constants;
 import com.loan.common.beans.Result;
+import com.loan.common.params.LoginParam;
 import com.loan.common.utils.ExceptionUtils;
 import com.loan.datasource.entities.jpa.CooperationEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(Constants.BASE_URL + "/admin")
@@ -41,11 +39,10 @@ public class AdminController extends BaseController {
 
     @ApiOperation(value = "后台登录", notes = "后台登录", response = Boolean.class)
     @RequestMapping(value = "/login", method = {RequestMethod.POST}, produces = "application/json;charset=utf-8")
-    public Result<String> login(@RequestParam("loginName") String loginName,
-                                   @RequestParam("pwd") String pwd) {
+    public Result<String> login(@RequestBody LoginParam loginParam) {
         Result<String> result = new Result<>();
         try {
-            if(loginName.equals("admin") && pwd.equals("123456")) {
+            if(loginParam.getLoginName().equals("admin") && loginParam.getLoginPwd().equals("123456")) {
                 return successResult("登录成功！");
             }
         } catch (Exception e) {
