@@ -40,7 +40,7 @@ public class AdminController extends BaseController {
     }
 
     @ApiOperation(value = "后台登录", notes = "后台登录", response = Boolean.class)
-    @RequestMapping(value = "/login", method = {RequestMethod.GET}, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/login", method = {RequestMethod.POST}, produces = "application/json;charset=utf-8")
     public Result<String> login(@RequestParam("loginName") String loginName,
                                    @RequestParam("pwd") String pwd) {
         Result<String> result = new Result<>();
