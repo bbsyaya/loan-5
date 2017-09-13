@@ -18,9 +18,9 @@ public class CooperationParam {
     private String deadLine;
     private Integer quta;
     private String flow;
-    private String condition;
-    private String commit;
-    private Integer order;
+    private String conditions;
+    private String commits;
+    private Integer orderBy;
     private String url;
 
     public Long getId() {
@@ -111,28 +111,28 @@ public class CooperationParam {
         this.flow = flow;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getConditions() {
+        return conditions;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setConditions(String conditions) {
+        this.conditions = conditions;
     }
 
-    public String getCommit() {
-        return commit;
+    public String getCommits() {
+        return commits;
     }
 
-    public void setCommit(String commit) {
-        this.commit = commit;
+    public void setCommits(String commits) {
+        this.commits = commits;
     }
 
-    public Integer getOrder() {
-        return order;
+    public Integer getOrderBy() {
+        return orderBy;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderBy(Integer orderBy) {
+        this.orderBy = orderBy;
     }
 
     public String getUrl() {
