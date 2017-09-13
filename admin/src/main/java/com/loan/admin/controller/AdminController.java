@@ -9,7 +9,6 @@ import com.loan.admin.consts.Constants;
 import com.loan.common.beans.Result;
 import com.loan.common.params.LoginParam;
 import com.loan.common.utils.ExceptionUtils;
-import com.loan.datasource.entities.jpa.CooperationEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
