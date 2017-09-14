@@ -3,6 +3,7 @@ package com.loan.admin.service.hotloan.impl;
 import com.loan.admin.service.hotloan.ICooperation;
 import com.loan.common.beans.CooperationBean;
 import com.loan.common.params.CooperationParam;
+import com.loan.common.utils.DateUtils;
 import com.loan.datasource.dao.springdata.CoopRepository;
 import com.loan.datasource.entities.jpa.CooperationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,8 @@ public class CooperationImpl implements ICooperation {
         entity.setService(param.getService());
         entity.setUrl(param.getUrl());
         entity.setUsersNum(param.getUsersNum());
+        entity.setCreateTime(DateUtils.getCurrentTimeStamp());
+        entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
         return coopRepository.save(entity);
     }
 
@@ -74,6 +77,7 @@ public class CooperationImpl implements ICooperation {
         entity.setService(param.getService());
         entity.setUrl(param.getUrl());
         entity.setUsersNum(param.getUsersNum());
+        entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
         coopRepository.findOne(entity.getId());
         if(entity == null){
             return null;
