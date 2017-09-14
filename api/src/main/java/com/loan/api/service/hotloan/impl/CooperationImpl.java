@@ -25,7 +25,7 @@ public class CooperationImpl implements ICooperation {
 
     public Page<CooperationEntity> getCooperationBeanByType(int pageNum, int pageSize){
         List<CooperationBean> beanList = new ArrayList<CooperationBean>();
-        Sort sort = new Sort(Sort.Direction.DESC, "order");
+        Sort sort = new Sort(Sort.Direction.DESC, "orderBy");
         Pageable pageable = new PageRequest(pageNum, pageSize, sort);
         Page<CooperationEntity> cooperationList = cooperationRepository.findAll(pageable);
         return cooperationList;
