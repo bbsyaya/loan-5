@@ -22,6 +22,15 @@ public class CooperationParam {
     private String commits;
     private Integer orderBy;
     private String url;
+    private Integer enabled;
+
+    public Integer getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
+    }
 
     public Long getId() {
         return id;

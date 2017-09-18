@@ -51,6 +51,7 @@ public class CooperationImpl implements ICooperation {
         entity.setService(param.getService());
         entity.setUrl(param.getUrl());
         entity.setUsersNum(param.getUsersNum());
+        entity.setEnabled(param.getEnabled());
         entity.setCreateTime(DateUtils.getCurrentTimeStamp());
         entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
         return coopRepository.save(entity);
@@ -77,6 +78,7 @@ public class CooperationImpl implements ICooperation {
         entity.setService(param.getService());
         entity.setUrl(param.getUrl());
         entity.setUsersNum(param.getUsersNum());
+        entity.setEnabled(param.getEnabled());
         entity.setUpdateTime(DateUtils.getCurrentTimeStamp());
         coopRepository.findOne(entity.getId());
         if(entity == null){
