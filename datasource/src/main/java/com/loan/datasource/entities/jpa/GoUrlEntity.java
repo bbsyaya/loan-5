@@ -9,18 +9,18 @@ import javax.persistence.*;
  * @company: 北京鼎力创世科技有限公司
  */
 @Entity
-@Table(name = "go_url", schema = "loan", catalog = "")
+@Table(name = "go_url", schema = "loan")
 public class GoUrlEntity {
-    private int id;
+    private long id;
     private String goUrl;
 
     @Id
     @Column(name = "id")
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -49,7 +49,7 @@ public class GoUrlEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (goUrl != null ? goUrl.hashCode() : 0);
         return result;
     }
