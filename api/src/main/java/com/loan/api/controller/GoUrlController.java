@@ -6,6 +6,7 @@ import com.loan.common.utils.ExceptionUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,12 +23,17 @@ public class GoUrlController extends BaseController {
     @Autowired
     IGoUrlService goUrlService;
 
+    @Value("${url_switch_on}")
+    private boolean urlSwtich;
+
     @ApiOperation(value = "跳转url", notes = "跳转url，默认为1", response = Result.class)
     @RequestMapping(value = "/getUrl", method = { RequestMethod.GET }, produces = "application/json;charset=utf-8")
     public Result<String> getUrl(){
         Result<String> result = new Result<>();
         try {
-            String url = goUrlService.getUrl(1l);
+            String url = "";
+            if(urlSwtich)
+                url = goUrlService.getUrl(1l);
             return successResult(url);
         }catch (Exception e){
             e.printStackTrace();
